@@ -1,0 +1,27 @@
+.work { width: 100%; max-width: 1240px; margin: 0 auto; padding: 40px 32px 0; scroll-margin-top: var(--header-height); }
+.heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 28px; }
+.heading h2 { font-size: clamp(28px, 3vw, 36px); font-weight: 500; line-height: 1.15; letter-spacing: -.05em; }
+.projectNav { position: sticky; top: var(--header-height); z-index: 20; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--background); border-block: 1px solid var(--border); }
+.projectNav button { position: relative; display: flex; align-items: center; gap: 12px; padding: 16px 24px; font-size: 16px; text-align: left; cursor: pointer; color: var(--secondary); transition: color .2s, background .2s; }
+.projectNav button + button { border-left: 1px solid var(--border); }
+.projectNav button::after { content: ""; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--project-color); transform: scaleX(0); transition: transform .3s; transform-origin: left; }
+.projectNav button:hover { color: var(--foreground); }
+.projectNav button[aria-selected="true"] { color: var(--foreground); background: color-mix(in srgb, var(--project-wash) 30%, var(--background)); }
+.projectNav button[aria-selected="true"]::after { transform: scaleX(1); }
+.number { font-size: 14px; font-family: var(--font-geist-mono), monospace; opacity: .65; }
+.dot { width: 5px; height: 5px; margin-left: auto; border-radius: 50%; background: var(--project-color); }
+@media (max-width: 700px) {
+  .work { padding: 32px 24px 0; }
+  .heading { padding-bottom: 24px; }
+  .projectNav button { padding: 14px 6px; gap: 5px; font-size: 14px; }
+  .number { display: none; }
+  .dot { display: none; }
+}
+
+.content, .panel { scroll-margin-top: calc(var(--header-height) + 72px); }
+.panel[hidden] { display: none; }
+.projectNav button:focus-visible, .panel:focus-visible { outline: 2px solid var(--project-color, #356be3); outline-offset: -3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .panel:not([hidden]) { animation: reveal .2s ease-out; }
+}
+@keyframes reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }

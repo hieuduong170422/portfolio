@@ -1,0 +1,25 @@
+.viewport { position: absolute; inset: 0; overflow: hidden; background: #000; }
+.canvas { position: relative; width: 100%; }
+.image { display: block; width: 100%; height: auto; }
+.line { position: absolute; pointer-events: none; }
+.mask { position: absolute; inset: 0; background: #000; transform-origin: right; }
+.cursor { position: absolute; inset: 0; opacity: 0; }
+.cursor::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: #fff; }
+.continueCover { position: absolute; left: 72%; top: 55.8%; width: 25%; height: 5.4%; background: #000; pointer-events: none; }
+.canvas[data-loaded="true"] .mask { animation: reveal var(--duration) steps(var(--characters), end) var(--delay) forwards; }
+.canvas[data-loaded="true"] .cursor { animation: typeCursor var(--duration) steps(var(--characters), end) var(--delay) forwards; }
+.canvas[data-loaded="true"] .continueCover { animation: showContinue 1ms step-end var(--finish) forwards; }
+.canvas[data-present="false"] .mask,
+.canvas[data-present="false"] .cursor,
+.canvas[data-present="false"] .continueCover { animation-play-state: paused; }
+@keyframes reveal { to { transform: scaleX(0); } }
+@keyframes typeCursor {
+  0% { transform: translateX(0); opacity: 1; }
+  99% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+@keyframes showContinue { to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .canvas[data-loaded] .mask { animation: none; transform: scaleX(0); }
+  .canvas .cursor, .canvas .continueCover { display: none; }
+}

@@ -1,0 +1,100 @@
+.camera { position: absolute; inset: 0; overflow: hidden; background: #171b1c; }
+.image { object-fit: cover; object-position: top; }
+
+/* Match the viewfinder and shutter in the existing 393 × 852 screenshot. */
+.scanArea {
+  position: absolute;
+  left: 10.7%;
+  top: 25.6%;
+  width: 78.6%;
+  height: 36.5%;
+  overflow: hidden;
+  border-radius: 9%;
+  pointer-events: none;
+}
+.sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 64%, rgb(71 218 237 / 5%) 78%, rgb(71 218 237 / 28%));
+  animation: scan var(--scan-duration) cubic-bezier(.45, 0, .55, 1) both;
+  will-change: transform;
+}
+.sweep > span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b4fbff 12%, #fff 50%, #b4fbff 88%, transparent);
+  box-shadow: 0 0 8px #49dfea, 0 -4px 18px rgb(73 223 234 / 65%);
+}
+.flash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: #fff;
+  animation: capture .18s ease-out both;
+}
+.confirmation { position: absolute; inset: 0; border: 1px solid rgb(171 250 218 / 80%); border-radius: inherit; background: rgb(65 191 132 / 5%); }
+.status {
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transform: translateX(-50%);
+  max-width: 90%;
+  padding: 7px 10px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 99px;
+  background: rgb(17 26 31 / 78%);
+  color: #fff;
+  font-size: clamp(9px, 4cqw, 11px);
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.status svg { flex-shrink: 0; }
+.camera[data-phase="complete"] .status { color: #c6f7db; }
+.shutter {
+  position: absolute;
+  left: 50%;
+  top: 83.3%;
+  display: grid;
+  place-items: center;
+  width: 19%;
+  aspect-ratio: 1;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.shutter > span {
+  width: 10.3cqw;
+  height: 10.3cqw;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform .12s ease-out, box-shadow .12s ease-out;
+}
+.shutter:not(:disabled):hover > span { box-shadow: 0 0 0 3px rgb(255 255 255 / 25%); }
+.shutter:not(:disabled):active > span, .camera[data-phase="capturing"] .shutter > span { transform: scale(.84); }
+.shutter:disabled { cursor: default; }
+.shutter:focus-visible { outline: 2px solid #a3f4ff; outline-offset: 2px; }
+@keyframes capture { 0% { opacity: 0; } 22% { opacity: .85; } 100% { opacity: 0; } }
+@keyframes scan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  8% { opacity: 1; }
+  52% { transform: translateY(0); opacity: 1; }
+  92% { opacity: 1; }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flash, .sweep { display: none; animation: none; }
+  .shutter > span { transition: none; }
+  .shutter:not(:disabled):active > span, .camera[data-phase="capturing"] .shutter > span { transform: none; }
+}

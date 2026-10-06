@@ -1,0 +1,87 @@
+.background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 78%, transparent);
+}
+.stars { position: absolute; inset: 0; }
+.stars i {
+  position: absolute;
+  width: var(--star-size);
+  height: var(--star-size);
+  border-radius: 50%;
+  background: var(--secondary);
+  opacity: .2;
+  animation: twinkle 8s ease-in-out var(--twinkle-delay) infinite alternate;
+}
+.system {
+  position: absolute;
+  width: clamp(720px, 100vw, 1500px);
+  aspect-ratio: 1;
+  left: 64%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+}
+.sun {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(38px, 4vw, 62px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff0bc, #ffb957 45%, #e77828 80%);
+  box-shadow: 0 0 30px #ffab5550, 0 0 90px #ffab5525, 0 0 180px #ffab5515;
+  opacity: .7;
+}
+.orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--orbit);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border: 1px solid color-mix(in srgb, var(--secondary) 12%, transparent);
+  border-radius: 50%;
+}
+.revolution {
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  animation: revolve var(--period) linear var(--phase) infinite;
+}
+.planet {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: var(--size);
+  height: var(--size);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #ffffff80, transparent 48%), var(--planet-color);
+  box-shadow: inset -3px -2px 5px #00000050;
+  opacity: .65;
+}
+.planet[data-planet="jupiter"] {
+  background: repeating-linear-gradient(15deg, #c5a07d 0 4px, #b48b6b 4px 7px, #dbc2a3 7px 9px);
+}
+.planet[data-planet="saturn"]::after {
+  content: "";
+  position: absolute;
+  inset: 25% -50%;
+  border: 3px solid #c9b58680;
+  border-radius: 50%;
+  transform: rotate(-25deg);
+}
+@keyframes revolve { to { transform: rotate(360deg); } }
+@keyframes twinkle { to { opacity: .45; } }
+@media (max-width: 700px) {
+  .system { width: 850px; left: 80%; top: 60%; opacity: .7; }
+  .stars i:nth-child(even) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .revolution { animation: none; transform: rotate(var(--initial-angle)); }
+  .stars i { animation: none; }
+}

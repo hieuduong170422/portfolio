@@ -1,0 +1,41 @@
+.hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 28px; max-width: 1240px; width: 100%; margin: 0 auto; padding: 120px 32px 0; }
+.stage { position: relative; isolation: isolate; width: 100%; }
+.hero { position: relative; }
+.intro { position: relative; z-index: 2; min-width: 0; }
+.role { margin-top: 12px; font-size: 20px; color: var(--secondary); }
+.intro h1 { font-size: clamp(40px, 4.5vw, 60px); line-height: 1.15; text-wrap: balance; letter-spacing: -.065em; font-weight: 550; }
+.description { margin-top: 16px; max-width: 400px; font-size: 16px; line-height: 1.8; color: var(--secondary); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 24px; font-size: 16px; }
+.primaryLink, .contactLink { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 46px; }
+.primaryLink { padding: 0 22px; border-radius: 99px; background: var(--foreground); color: var(--background); transition: transform .25s; }
+.primaryLink:hover { transform: translateY(-3px); }
+.contactLink { color: var(--secondary); }
+.contactLink:hover { color: var(--foreground); }
+.gallery { max-width: 480px; justify-self: end; position: relative; min-width: 0; width: 100%; aspect-ratio: 1.03; perspective: 1200px; }
+.phoneLink { position: absolute; display: block; width: 32%; transition: transform .55s cubic-bezier(.2,.8,.2,1); animation: arrive .9s cubic-bezier(.2,.8,.2,1) backwards; }
+.phoneLink[data-project="capple"] { z-index: 3; top: 3%; left: 34%; --angle: -2deg; transform: rotate(-2deg); animation-delay: .08s; }
+.phoneLink[data-project="wedream"] { z-index: 2; top: 17%; left: 2%; --angle: -13deg; transform: rotate(-13deg); animation-delay: .2s; }
+.phoneLink[data-project="focuslock"] { z-index: 1; top: 22%; right: 0; --angle: 12deg; transform: rotate(12deg); animation-delay: .32s; }
+.phone { border-radius: 16% / 8%; }
+.phoneLabel { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 20px; color: var(--secondary); font-size: 14px; }
+.phoneLabel i { width: 5px; height: 5px; border-radius: 50%; background: var(--project-color); }
+.phoneLink:focus-visible { outline: 2px solid var(--project-color); outline-offset: 8px; border-radius: 24px; }
+@keyframes arrive { from { opacity: 0; transform: translateY(45px) rotate(0deg); } to { opacity: 1; transform: translateY(0) rotate(var(--angle)); } }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .phoneLink:hover { z-index: 4; transform: translateY(-14px) rotate(0deg); } }
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr 1fr; padding-top: 112px; gap: 12px; }
+  .intro h1 { font-size: clamp(36px, 4.5vw, 48px); }
+}
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; padding: 104px 24px 0; gap: 24px; }
+  .intro h1 { font-size: clamp(36px, 8vw, 48px); }
+  .description { margin-top: 16px; font-size: 16px; }
+  .gallery { width: min(100%, 470px); margin: 10px auto 0; }
+  .phoneLabel { font-size: 14px; gap: 5px; margin-top: 14px; }
+  .phoneLabel svg { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phoneLink { animation: none; transition: none; }
+  .primaryLink { transition: none; }
+  .primaryLink:hover { transform: none; }
+}
