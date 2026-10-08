@@ -9,7 +9,9 @@ export type AppScreen = {
   /** Short label for the screen within a multi-screen showcase chapter. */
   step?: string;
   /** Optional interactive demo shown only inside a project showcase. */
-  effect?: "food-scan" | "dream-typing" | "widgets" | "shop";
+  effect?: "food-scan" | "dream-typing" | "widgets" | "shop" | "home-menu";
+  /** For `home-menu`: show the home screen with its log sheet raised. */
+  menuOpen?: boolean;
 };
 
 export type AppFeature = {
@@ -106,6 +108,7 @@ export const apps: AppCaseStudy[] = [
         alt: "Capple home screen showing the weekly calendar, remaining calories, macros, daily tasks and meals",
         caption: "Daily dashboard — calories, macros, tasks and meals",
         step: "Home",
+        effect: "home-menu",
       },
       {
         src: "/images/capple/menu.png",
@@ -113,6 +116,8 @@ export const apps: AppCaseStudy[] = [
         alt: "Capple quick-add sheet with Voice log, Log food, Chat and Meal scan, plus weight, water, exercise and cycle tracking shortcuts",
         caption: "One sheet for every way to log — voice, search, chat or a meal photo",
         step: "Menu",
+        effect: "home-menu",
+        menuOpen: true,
       },
       {
         src: "/images/capple/scan.png",

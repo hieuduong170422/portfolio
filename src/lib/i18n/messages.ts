@@ -34,6 +34,7 @@ const en = {
     previous: "Previous", next: "Next", previousStep: "Previous preview screen", nextStep: "Next preview screen",
   },
   typing: { replay: "Replay", replayLabel: "Replay dream typing animation" },
+  home: { openMenu: "Open the log menu", closeMenu: "Close the log menu", voice: "Voice log", chat: "Chat", scan: "Meal scan", tapButton: "Tap the blue button" },
   shop: {
     title: "Shop", back: "Back", balance: "{count} coins", logo: "LOGO", other: "OTHER", free: "Free", owned: "Owned",
     payWith: "Pay with {count} coin", activate: "Activate", activated: "Activated", notEnough: "Not enough coins",
@@ -79,6 +80,7 @@ const vi: Messages = {
     previous: "Quay lại", next: "Tiếp theo", previousStep: "Xem màn hình trước", nextStep: "Xem màn hình tiếp theo",
   },
   typing: { replay: "Xem lại", replayLabel: "Xem lại hiệu ứng nhập nội dung giấc mơ" },
+  home: { openMenu: "Mở menu ghi bữa ăn", closeMenu: "Đóng menu ghi bữa ăn", voice: "Ghi bằng giọng nói", chat: "Chat", scan: "Quét món ăn", tapButton: "Bấm nút màu xanh" },
   shop: {
     title: "Cửa hàng", back: "Quay lại", balance: "{count} coin", logo: "LOGO", other: "KHÁC", free: "Miễn phí", owned: "Đã mua",
     payWith: "Thanh toán {count} coin", activate: "Kích hoạt", activated: "Đã kích hoạt", notEnough: "Không đủ coin",

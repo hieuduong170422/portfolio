@@ -1,0 +1,30 @@
+/* Hotspot boxes are percentages of the 1320×2868 screenshots (home-hook.png, menu.png). */
+.screen { position: absolute; inset: 0; overflow: hidden; background: #fff; }
+.image { object-fit: cover; object-position: top; user-select: none; }
+
+/* The blue scan/log button at the right end of the bottom bar. */
+.logButton { position: absolute; z-index: 1; left: 78.7%; top: 88.2%; width: 16.8%; aspect-ratio: 1; border-radius: 50%; cursor: pointer; }
+.logButton:focus-visible { outline: 2px solid #116ae0; outline-offset: 2px; }
+.pulse { position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 0 0 rgb(17 106 224 / 55%); animation: pulse 1.8s ease-out infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 3.2cqw rgb(17 106 224 / 0%); } 100% { box-shadow: 0 0 0 0 rgb(17 106 224 / 0%); } }
+
+.scrim { position: absolute; z-index: 2; inset: 0; background: rgb(0 0 0 / 22%); opacity: 0; pointer-events: none; transition: opacity .3s ease; cursor: pointer; }
+.screen[data-open="true"] .scrim { opacity: 1; pointer-events: auto; }
+
+/* The sheet shows the bottom 48.4% of menu.png, where the real bottom sheet sits. */
+.sheet { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 48.4%; overflow: hidden; border-radius: 7cqw 7cqw 0 0; transform: translateY(105%); transition: transform .42s cubic-bezier(.2, .9, .3, 1); }
+.screen[data-open="true"] .sheet { transform: translateY(0); }
+.sheetImage { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; user-select: none; }
+
+.handle { position: absolute; left: 30%; right: 30%; top: 0; height: 5.4%; cursor: pointer; }
+.tile { position: absolute; width: 44.5%; height: 21.2%; border-radius: 5cqw; cursor: pointer; transition: background .15s; }
+.tile:hover { background: rgb(17 106 224 / 6%); }
+.tile:active { background: rgb(17 106 224 / 12%); }
+.tile[data-tile="voice"] { left: 4.3%; top: 5.5%; }
+.tile[data-tile="chat"] { left: 4.3%; top: 28.9%; }
+.tile[data-tile="scan"] { left: 51%; top: 28.9%; }
+.handle:focus-visible, .tile:focus-visible, .scrim:focus-visible { outline: 2px solid #116ae0; outline-offset: -2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; box-shadow: 0 0 0 .8cqw rgb(17 106 224 / 45%); }
+}

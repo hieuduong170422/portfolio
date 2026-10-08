@@ -5,7 +5,7 @@ import { formatMessage } from "@/lib/i18n/messages";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, CodeXml, MoveHorizontal, RotateCcw } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, CodeXml, MousePointerClick, MoveHorizontal, RotateCcw } from "lucide-react";
 import { IPhoneDevice } from "./IPhoneDevice";
 import { ProjectScreen } from "./ProjectScreen";
 import { FeatureGallery } from "./FeatureGallery";
@@ -39,6 +39,12 @@ export function AppShowcase({ app, variant = "full" }: { app: AppCaseStudy; vari
   const interactiveScreen = scrollable || Boolean(app.screens[selected]?.effect);
   const scrollHintId = `${app.slug}-scroll-hint`;
   const scanScreenIndex = app.screens.findIndex((screen) => screen.effect === "food-scan");
+  // Home and its log menu share one component, so the sheet slides up instead of the screen swapping.
+  const screenKey = app.screens[selected]?.effect === "home-menu" ? "home-menu" : selected;
+  const goToScreen = useCallback((src: string) => {
+    const index = app.screens.findIndex((screen) => screen.src === src);
+    if (index >= 0) setSelected(index);
+  }, [app.screens]);
   useEffect(() => {
     // The scan ends with an automatic transition; fetch its result during the scan.
     if (app.screens[selected]?.effect === "food-scan") {
@@ -79,13 +85,13 @@ export function AppShowcase({ app, variant = "full" }: { app: AppCaseStudy; vari
               transition={{ type: "spring", stiffness: 90, damping: 20 }}>
               <IPhoneDevice showIsland={!app.screens[selected]?.hasDynamicIsland}>
                 <AnimatePresence initial={false}>
-                  <motion.div key={selected} className={styles.screenContent}
+                  <motion.div key={screenKey} className={styles.screenContent}
                     initial={{ opacity: 0, x: reducedMotion ? 0 : 18 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: reducedMotion ? 0 : -18 }}
                     transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}>
                     <ProjectScreen key={typingReplay} app={app} index={selected} interactive sizes={imageSizes.showcase}
-                      onScanComplete={handleScanComplete}
+                      onScanComplete={handleScanComplete} onNavigate={goToScreen}
                       scrollHintId={scrollable ? scrollHintId : undefined} />
                   </motion.div>
                 </AnimatePresence>
@@ -95,6 +101,9 @@ export function AppShowcase({ app, variant = "full" }: { app: AppCaseStudy; vari
               <span>0{chapterIndex + 1} <span>/ 0{app.chapters.length}</span></span>
               {scrollable && <span id={scrollHintId} className={styles.scrollHint}>
                 <ArrowDown size={12} aria-hidden="true" /> {t.preview.scroll}
+              </span>}
+              {app.screens[selected]?.effect === "home-menu" && !app.screens[selected]?.menuOpen && <span className={styles.scrollHint}>
+                <MousePointerClick size={12} aria-hidden="true" /> {t.home.tapButton}
               </span>}
               {app.screens[selected]?.effect === "widgets" && <span className={styles.scrollHint}>
                 <MoveHorizontal size={12} aria-hidden="true" /> {t.preview.swipeWidgets}

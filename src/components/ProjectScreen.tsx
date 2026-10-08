@@ -8,9 +8,10 @@ import styles from "./ProjectVisual.module.css";
 import { AppScreenshot } from "./AppScreenshot";
 import { WidgetsScreen } from "./WidgetsScreen";
 import { ShopScreen } from "./ShopScreen";
+import { HomeMenuScreen } from "./HomeMenuScreen";
 
 /** Shared image slot. Adding a screenshot replaces the branded preview everywhere. */
-export function ProjectScreen({ app, index = 0, preload = false, sizes = "(max-width: 640px) 220px, 280px", interactive = false, scrollHintId, onScanComplete }: {
+export function ProjectScreen({ app, index = 0, preload = false, sizes = "(max-width: 640px) 220px, 280px", interactive = false, scrollHintId, onScanComplete, onNavigate }: {
   app: AppCaseStudy;
   index?: number;
   preload?: boolean;
@@ -19,12 +20,17 @@ export function ProjectScreen({ app, index = 0, preload = false, sizes = "(max-w
   interactive?: boolean;
   scrollHintId?: string;
   onScanComplete?: () => void;
+  /** Lets a screen jump to another showcase screen, identified by its image. */
+  onNavigate?: (src: string) => void;
 }) {
   const { t, locale } = useLocale();
   const screen = app.screens[index];
   const surfaces = getSurfaces(app.slug, locale);
   if (screen?.effect === "widgets" && interactive && surfaces) {
     return <WidgetsScreen screen={screen} appName={app.shortName ?? app.name} surfaces={surfaces} sizes={sizes} />;
+  }
+  if (screen?.effect === "home-menu" && interactive && onNavigate) {
+    return <HomeMenuScreen screen={screen} open={Boolean(screen.menuOpen)} sizes={sizes} onNavigate={onNavigate} />;
   }
   if (screen?.effect === "shop" && interactive) {
     return <ShopScreen appName={app.shortName ?? app.name} />;
