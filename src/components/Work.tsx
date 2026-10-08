@@ -78,7 +78,7 @@ export function Work() {
         {apps.map((app) => (
           <div key={app.slug} id={app.slug} role="tabpanel" aria-labelledby={`${app.slug}-tab`}
             tabIndex={0} hidden={active !== app.slug} className={styles.panel}>
-            {active === app.slug && <AppShowcase app={app} />}
+            {active === app.slug && <AppShowcase app={app} variant="summary" />}
           </div>
         ))}
       </div>

@@ -19,11 +19,12 @@ const en = {
     explore: "View projects",
     gallery: "Explore three mobile app projects",
   },
-  work: { label: "Selected work", navigation: "Project navigation" },
+  work: { label: "Selected work", navigation: "Project navigation", caseStudy: "View case study", allWork: "All work", otherProjects: "Other projects" },
   preview: {
     explore: "Explore {name}", region: "{name} screen preview", experience: "App experience", visual: "Visual preview",
-    soon: "App screens coming soon", scroll: "Scroll to explore", scrollInside: "Scroll inside the phone",
-    scrollRegion: "{name} scrollable screenshot", previousScreen: "Previous {name} screen", nextScreen: "Next {name} screen",
+    soon: "App screens coming soon", scroll: "Scroll to explore", scrollInside: "Scroll inside the phone", swipeWidgets: "Swipe the widget",
+    widgetStack: "{name} widgets", widgetPosition: "Widget {current} of {total}", showWidget: "Show the {name} widget",
+    scrollRegion: "{name} scrollable screenshot", previousScreen: "Previous {name} screen", screensIn: "{name} screens", nextScreen: "Next {name} screen",
     website: "Visit website", code: "View code", behind: "My contribution & technologies", technologies: "Technologies",
   },
   features: {
@@ -55,11 +56,12 @@ const vi: Messages = {
     explore: "Xem dự án",
     gallery: "Khám phá ba dự án ứng dụng di động",
   },
-  work: { label: "Dự án tiêu biểu", navigation: "Điều hướng dự án" },
+  work: { label: "Dự án tiêu biểu", navigation: "Điều hướng dự án", caseStudy: "Xem chi tiết dự án", allWork: "Tất cả dự án", otherProjects: "Dự án khác" },
   preview: {
     explore: "Khám phá {name}", region: "Xem trước màn hình {name}", experience: "Trải nghiệm ứng dụng", visual: "Xem trước thiết kế",
-    soon: "Sắp cập nhật màn hình ứng dụng", scroll: "Cuộn để xem thêm", scrollInside: "Cuộn bên trong điện thoại",
-    scrollRegion: "Ảnh màn hình {name} có thể cuộn", previousScreen: "Màn hình trước của {name}", nextScreen: "Màn hình tiếp theo của {name}",
+    soon: "Sắp cập nhật màn hình ứng dụng", scroll: "Cuộn để xem thêm", scrollInside: "Cuộn bên trong điện thoại", swipeWidgets: "Vuốt widget để xem",
+    widgetStack: "Widget {name}", widgetPosition: "Widget {current} trên {total}", showWidget: "Xem widget {name}",
+    scrollRegion: "Ảnh màn hình {name} có thể cuộn", previousScreen: "Màn hình trước của {name}", screensIn: "Các màn hình {name}", nextScreen: "Màn hình tiếp theo của {name}",
     website: "Trang web ứng dụng", code: "Xem mã nguồn", behind: "Đóng góp & công nghệ", technologies: "Công nghệ",
   },
   features: {

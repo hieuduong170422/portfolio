@@ -1,7 +1,7 @@
 import { apps, type AppCaseStudy, type AppFeature, type AppScreen } from "../apps";
 import type { Locale } from "./messages";
 
-type ScreenCopy = Pick<AppScreen, "alt" | "caption">;
+type ScreenCopy = Pick<AppScreen, "alt" | "caption" | "step">;
 type FeatureCopy = Pick<AppFeature, "title" | "category" | "description"> & { screens: (ScreenCopy & { title: string })[] };
 type ProjectCopy = Pick<AppCaseStudy, "category" | "tagline" | "description" | "chapters" | "role" | "responsibilities" | "stats" | "statsNote" | "statusLabel" | "scale" | "highlights"> & {
   screens: ScreenCopy[];
@@ -27,16 +27,18 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
       "Xây dựng backend Node.js/MongoDB và GitLab CI/CD tự động triển khai khi cập nhật nhánh dev. Quản lý phát hành trên App Store Connect và Google Play Console từ 07/2026.",
     ],
     chapters: [
-      { title: "Tổng quan", description: "Xem calo còn lại, các chất dinh dưỡng, nhiệm vụ hằng ngày và các bữa ăn." },
-      { title: "Quét món ăn", description: "Chụp ảnh bữa ăn để AI hỗ trợ nhận diện món ăn và ước tính dinh dưỡng." },
-      { title: "Kết quả dinh dưỡng", description: "Xem lượng calo, các chất dinh dưỡng và danh sách nguyên liệu mà AI nhận diện từ ảnh." },
-      { title: "Chỉnh nguyên liệu", description: "Chỉnh calo, đạm, chất bột đường, chất béo và khối lượng của từng nguyên liệu trước khi lưu." },
+      { title: "Tổng quan", description: "Calo, các chất dinh dưỡng, nhiệm vụ hằng ngày và bữa ăn trong một màn hình, cùng một bảng cho mọi cách ghi bữa ăn." },
+      { title: "Ghi bữa ăn", description: "Chụp ảnh, mô tả bằng chat hoặc nói trực tiếp. AI ước tính calo và các chất dinh dưỡng, mọi nguyên liệu đều chỉnh được trước khi lưu vào nhật ký." },
+      { title: "Widget & nhắc nhở", description: "Widget màn hình chính viết native bằng Swift (WidgetKit, iOS 16+) và Kotlin giúp xem calo và chuỗi ngày chỉ trong một cái nhìn. Nhắc nhở cục bộ chạy theo múi giờ của từng người, dựa trên lượng calo đã ghi và gọi người dùng quay lại sau 3 và 7 ngày không mở app." },
     ],
     screens: [
-      { alt: "Màn hình Home Capple hiển thị lịch tuần, calo còn lại, các chất dinh dưỡng, nhiệm vụ và bữa ăn", caption: "Tổng quan hằng ngày — calo, dinh dưỡng, nhiệm vụ và bữa ăn" },
-      { alt: "Màn hình camera Capple quét món ăn bằng AI", caption: "Quét món ăn bằng AI — hướng camera vào bữa ăn" },
-      { alt: "Kết quả quét Capple với calo, các chất dinh dưỡng và danh sách nguyên liệu có thể chỉnh sửa", caption: "Kết quả AI ước tính từ ảnh — bạn có thể chỉnh lại nguyên liệu và khẩu phần" },
-      { alt: "Màn hình chỉnh nguyên liệu Capple với calo, đạm, chất bột đường, chất béo, khối lượng và nút lưu", caption: "Chi tiết nguyên liệu — điều chỉnh dinh dưỡng và khẩu phần trước khi lưu" },
+      { step: "Home", alt: "Màn hình Home Capple hiển thị lịch tuần, calo còn lại, các chất dinh dưỡng, nhiệm vụ và bữa ăn", caption: "Tổng quan hằng ngày — calo, dinh dưỡng, nhiệm vụ và bữa ăn" },
+      { step: "Menu", alt: "Bảng thêm nhanh Capple với Voice log, Log food, Chat, Meal scan cùng lối tắt cân nặng, nước, vận động và chu kỳ", caption: "Một bảng cho mọi cách ghi — giọng nói, tìm kiếm, chat hoặc chụp ảnh" },
+      { step: "Quét", alt: "Màn hình camera Capple quét món ăn bằng AI", caption: "Quét món ăn bằng AI — hướng camera vào bữa ăn" },
+      { step: "Kết quả", alt: "Kết quả quét Capple với calo, các chất dinh dưỡng và danh sách nguyên liệu có thể chỉnh sửa", caption: "Kết quả AI ước tính từ ảnh — bạn có thể chỉnh lại nguyên liệu và khẩu phần" },
+      { step: "Chat", alt: "Phản hồi chat Capple ước tính cơm gà nướng rau củ 350 g, 520 kcal, kèm đạm, chất bột đường và nút Add to Diary", caption: "Ghi bằng chat — mô tả bữa ăn để nhận lại calo và dinh dưỡng" },
+      { step: "Giọng nói", alt: "Bảng ghi bằng giọng nói Capple với micro, trạng thái Listening và hai nút Cancel, Done", caption: "Ghi bằng giọng nói — chuyển lời nói thành mục nhật ký" },
+      { alt: "Màn hình chính iPhone với widget Capple vuốt được để xem calo hôm nay, chuỗi ngày, tăng cân, giảm cân và ghi nhanh, giữa các app mẫu màu xám, kèm thông báo nhắc nhở hiện dạng banner", caption: "Widget màn hình chính và nhắc nhở theo ngữ cảnh" },
     ],
     features: [
       {
@@ -268,6 +270,8 @@ const viApps: AppCaseStudy[] = apps.map((app) => {
   const copy = vietnameseProjects[app.slug as keyof typeof vietnameseProjects];
   return {
     ...app, ...copy,
+    // Merge per index so structure (screenCount) stays shared with English.
+    chapters: app.chapters.map((chapter, index) => ({ ...chapter, ...copy.chapters[index] })),
     screens: app.screens.map((screen, index) => ({ ...screen, ...copy.screens[index] })),
     features: app.features?.map((feature, index) => ({
       ...feature, ...copy.features?.[index],

@@ -6,8 +6,10 @@ export type AppScreen = {
   hasDynamicIsland?: boolean;
   /** Enable native scrolling in the showcase using the source image's pixel dimensions. */
   scroll?: { width: number; height: number };
+  /** Short label for the screen within a multi-screen showcase chapter. */
+  step?: string;
   /** Optional interactive demo shown only inside a project showcase. */
-  effect?: "food-scan" | "dream-typing";
+  effect?: "food-scan" | "dream-typing" | "widgets";
 };
 
 export type AppFeature = {
@@ -26,7 +28,8 @@ export type AppCaseStudy = {
   tagline: string;
   description: string;
   category: string;
-  chapters: { title: string; description: string }[];
+  /** Each chapter covers the next `screenCount` screens (default 1), in order. */
+  chapters: { title: string; description: string; screenCount?: number }[];
   role?: string;
   responsibilities?: string;
   /** Verified engineering figures, e.g. from the app's repository. */
@@ -55,10 +58,9 @@ export const apps: AppCaseStudy[] = [
     shortName: "Capple",
     category: "Nutrition · AI",
     chapters: [
-      { title: "Dashboard", description: "Calories, macros, daily tasks and meals in one dashboard." },
-      { title: "Scan a meal", description: "Point the camera at a meal and let AI help identify what's on the plate." },
-      { title: "Nutrition results", description: "See the nutrition breakdown and adjust the ingredients to match your meal." },
-      { title: "Edit ingredients", description: "Edit calories, protein, carbs, fat and serving weight for each ingredient before saving your changes." },
+      { title: "Overview", screenCount: 2, description: "Calories, macros, daily tasks and meals in one dashboard, and a single sheet for every way to log." },
+      { title: "Log a meal", screenCount: 4, description: "Snap a photo, describe the meal in a chat or just say it. AI estimates calories and macros, and every ingredient stays editable before it reaches the diary." },
+      { title: "Widgets & reminders", description: "Native home-screen widgets in Swift (WidgetKit, iOS 16+) and Kotlin keep calories and streaks one glance away. Local reminders follow each user's time zone, react to calories logged so far and nudge inactive users after 3 and 7 days." },
     ],
     tagline: "AI-powered calorie & nutrition tracking app",
     description:
@@ -102,23 +104,48 @@ export const apps: AppCaseStudy[] = [
         hasDynamicIsland: true,
         alt: "Capple home screen showing the weekly calendar, remaining calories, macros, daily tasks and meals",
         caption: "Daily dashboard — calories, macros, tasks and meals",
+        step: "Home",
+      },
+      {
+        src: "/images/capple/menu.png",
+        hasDynamicIsland: true,
+        alt: "Capple quick-add sheet with Voice log, Log food, Chat and Meal scan, plus weight, water, exercise and cycle tracking shortcuts",
+        caption: "One sheet for every way to log — voice, search, chat or a meal photo",
+        step: "Menu",
       },
       {
         src: "/images/capple/scan.png",
         alt: "Capple AI camera scan screen pointed at a plate of food",
         caption: "AI food scan — point the camera at your meal",
         effect: "food-scan",
+        step: "Scan",
       },
       {
         src: "/images/capple/scan-result.png",
         alt: "Capple scan result screen with calories, macros and editable ingredients",
         caption: "Instant nutrition breakdown with editable ingredients",
         scroll: { width: 393, height: 1159 },
+        step: "Result",
       },
       {
-        src: "/images/capple/ingredient-nutrition.png",
-        alt: "Capple ingredient editor showing calories, protein, carbs, fat, serving weight and Save Changes",
-        caption: "Ingredient details — adjust nutrition and portions before saving",
+        src: "/images/capple/chat-log.png",
+        hasDynamicIsland: true,
+        alt: "Capple chat reply estimating grilled chicken rice with vegetables at 350 g and 520 kcal, with protein and carbs and an Add to Diary button",
+        caption: "Chat logging — describe a meal and get calories and macros back",
+        step: "Chat",
+      },
+      {
+        src: "/images/capple/voice.png",
+        hasDynamicIsland: true,
+        alt: "Capple voice logging sheet with a microphone, a Listening status and Cancel and Done buttons",
+        caption: "Voice logging — speech-to-text turns a spoken meal into an entry",
+        step: "Voice",
+      },
+      {
+        src: "/images/capple/widgets/ios-today.png",
+        alt: "iPhone home screen with a swipeable Capple widget showing today's calories, streak, weight gain, weight loss and quick log, among grey placeholder apps, with Capple reminders arriving as banners",
+        caption: "Home-screen widgets and adaptive reminders",
+        effect: "widgets",
       },
     ],
     features: [

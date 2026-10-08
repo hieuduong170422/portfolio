@@ -2,33 +2,43 @@
 
 import { useLocale } from "./LocaleProvider";
 import { formatMessage } from "@/lib/i18n/messages";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type CSSProperties } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, CodeXml, RotateCcw } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, CodeXml, MoveHorizontal, RotateCcw } from "lucide-react";
 import { IPhoneDevice } from "./IPhoneDevice";
 import { ProjectScreen } from "./ProjectScreen";
 import { FeatureGallery } from "./FeatureGallery";
-import { WidgetShowcase } from "./WidgetShowcase";
-import { getSurfaces } from "@/lib/surfaces";
 import type { AppCaseStudy } from "@/lib/apps";
 import { imageSizes } from "@/lib/imageSizes";
 import { warmScreenImage } from "@/lib/warmScreenImage";
+import { chapterIndexOf, getChapterRanges } from "@/lib/chapters";
+import { useScrollSteps } from "./useScrollSteps";
 import visual from "./ProjectVisual.module.css";
 import styles from "./AppShowcase.module.css";
 
-export function AppShowcase({ app }: { app: AppCaseStudy }) {
-  const { t, locale } = useLocale();
-  const surfaces = getSurfaces(app.slug, locale);
+/** `summary` is the home-page card; `full` adds contribution details and features for the case-study page. */
+export function AppShowcase({ app, variant = "full" }: { app: AppCaseStudy; variant?: "summary" | "full" }) {
+  const { t } = useLocale();
+  const summary = variant === "summary";
   const [selected, setSelected] = useState(0);
   const [typingReplay, setTypingReplay] = useState(0);
   const reducedMotion = useReducedMotion();
-  const chapter = app.chapters[selected];
+  // `selected` is a screen index; chapters group consecutive screens.
+  const ranges = getChapterRanges(app.chapters);
+  const lastRange = ranges[ranges.length - 1];
+  const slotCount = lastRange.start + lastRange.count;
+  // On the home page, scrolling walks through every screen before the page moves on.
+  const { trackRef, scrollMode, scrollToStep } = useScrollSteps({ enabled: summary, count: slotCount, onStep: setSelected });
+  const select = (index: number) => (scrollMode ? scrollToStep(index) : setSelected(index));
+  const chapterIndex = chapterIndexOf(ranges, selected);
+  const chapter = app.chapters[chapterIndex];
+  const range = ranges[chapterIndex];
   const panelId = `${app.slug}-preview`;
   const scrollable = Boolean(app.screens[selected]?.scroll);
   const interactiveScreen = scrollable || Boolean(app.screens[selected]?.effect);
   const scrollHintId = `${app.slug}-scroll-hint`;
   const scanScreenIndex = app.screens.findIndex((screen) => screen.effect === "food-scan");
-  const chapterCount = app.chapters.length;
   useEffect(() => {
     // The scan ends with an automatic transition; fetch its result during the scan.
     if (app.screens[selected]?.effect === "food-scan") {
@@ -39,9 +49,9 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
     setSelected((current) => {
       // A finishing scan must not override a screen the visitor chose manually.
       if (current !== scanScreenIndex) return current;
-      return Math.min(current + 1, chapterCount - 1);
+      return Math.min(current + 1, slotCount - 1);
     });
-  }, [scanScreenIndex, chapterCount]);
+  }, [scanScreenIndex, slotCount]);
   const links = [
     { href: app.links.appStore, label: "App Store" },
     { href: app.links.googlePlay, label: "Google Play" },
@@ -50,7 +60,8 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
   ].filter((link) => link.href);
 
   return (
-    <article aria-labelledby={`${app.slug}-title`} data-project={app.slug}
+    <article ref={trackRef} aria-labelledby={`${app.slug}-title`} data-project={app.slug} data-variant={variant}
+      data-scroll-mode={scrollMode} style={{ "--steps": slotCount - 1 } as CSSProperties}
       className={`${visual.theme} ${styles.project}`}>
       <div className={styles.layout}>
         <div className={styles.visualColumn}>
@@ -82,9 +93,12 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
               </IPhoneDevice>
             </motion.div>
             <div className={styles.stageFooter}>
-              <span>0{selected + 1} <span>/ 0{app.chapters.length}</span></span>
+              <span>0{chapterIndex + 1} <span>/ 0{app.chapters.length}</span></span>
               {scrollable && <span id={scrollHintId} className={styles.scrollHint}>
                 <ArrowDown size={12} aria-hidden="true" /> {t.preview.scroll}
+              </span>}
+              {app.screens[selected]?.effect === "widgets" && <span className={styles.scrollHint}>
+                <MoveHorizontal size={12} aria-hidden="true" /> {t.preview.swipeWidgets}
               </span>}
               {app.screens[selected]?.effect === "dream-typing" && <button type="button"
                 className={styles.replay} aria-label={t.typing.replayLabel} aria-controls={panelId}
@@ -93,11 +107,11 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
               </button>}
               <div className={styles.previewControls}>
                 <button type="button" aria-label={formatMessage(t.preview.previousScreen, { name: app.name })} disabled={selected === 0}
-                  aria-controls={panelId} onClick={() => setSelected(selected - 1)}><ArrowLeft size={16} /></button>
-                <button type="button" aria-label={formatMessage(t.preview.nextScreen, { name: app.name })} disabled={selected === app.chapters.length - 1}
+                  aria-controls={panelId} onClick={() => select(selected - 1)}><ArrowLeft size={16} /></button>
+                <button type="button" aria-label={formatMessage(t.preview.nextScreen, { name: app.name })} disabled={selected === slotCount - 1}
                   onPointerEnter={() => warmScreenImage(app.screens[selected + 1], imageSizes.showcase)}
                   onFocus={() => warmScreenImage(app.screens[selected + 1], imageSizes.showcase)}
-                  aria-controls={panelId} onClick={() => setSelected(selected + 1)}><ArrowRight size={16} /></button>
+                  aria-controls={panelId} onClick={() => select(selected + 1)}><ArrowRight size={16} /></button>
               </div>
             </div>
           </div>
@@ -106,7 +120,7 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
           </p>
         </div>
 
-        <div className={styles.story}>
+        <div className={styles.story} data-pin-content>
           {app.statusLabel && <p className={styles.statusBadge}>{app.statusLabel}</p>}
           <h3 id={`${app.slug}-title`}>{app.name}</h3>
           <p className={styles.description}>{app.description}</p>
@@ -119,10 +133,10 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
           {app.statsNote && <p className={styles.statsNote}>{app.statsNote}</p>}
           <div className={styles.chapters} aria-label={formatMessage(t.preview.explore, { name: app.name })}>
             {app.chapters.map((step, i) => (
-              <button key={i} type="button" aria-pressed={selected === i} aria-controls={panelId}
-                onPointerEnter={() => warmScreenImage(app.screens[i], imageSizes.showcase)}
-                onFocus={() => warmScreenImage(app.screens[i], imageSizes.showcase)}
-                className={styles.chapter} onClick={() => setSelected(i)}>
+              <button key={i} type="button" aria-pressed={chapterIndex === i} aria-controls={panelId}
+                onPointerEnter={() => warmScreenImage(app.screens[ranges[i].start], imageSizes.showcase)}
+                onFocus={() => warmScreenImage(app.screens[ranges[i].start], imageSizes.showcase)}
+                className={styles.chapter} onClick={() => select(ranges[i].start)}>
                 <span className={styles.stepNumber}>0{i + 1}</span>
                 <span className={styles.stepCopy}><strong>{step.title}</strong></span>
                 <ArrowUpRight size={16} aria-hidden="true" />
@@ -130,6 +144,21 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
             ))}
           </div>
           <p className={styles.chapterDescription}>{chapter.description}</p>
+          {range.count > 1 && (
+            <div className={styles.steps} aria-label={formatMessage(t.preview.screensIn, { name: chapter.title })}>
+              {app.screens.slice(range.start, range.start + range.count).map((screen, offset) => {
+                const index = range.start + offset;
+                return (
+                  <button key={screen.src} type="button" aria-pressed={selected === index} aria-controls={panelId}
+                    onPointerEnter={() => warmScreenImage(screen, imageSizes.showcase)}
+                    onFocus={() => warmScreenImage(screen, imageSizes.showcase)}
+                    onClick={() => select(index)}>
+                    <span aria-hidden="true">{offset + 1}</span>{screen.step ?? screen.caption}
+                  </button>
+                );
+              })}
+            </div>
+          )}
           {links.length > 0 && (
             <div className={styles.links}>{links.map((link) => (
               <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">
@@ -137,7 +166,12 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
               </a>
             ))}</div>
           )}
-          {(app.role || app.highlights || app.tech.length > 0) && (
+          {summary && (
+            <Link href={`/work/${app.slug}`} className={styles.caseStudy}>
+              {t.work.caseStudy}<ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          )}
+          {!summary && (app.role || app.highlights || app.tech.length > 0) && (
             <details className={styles.details} open>
               <summary>
                 <CodeXml size={20} aria-hidden="true" />
@@ -160,8 +194,7 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
           )}
         </div>
       </div>
-      {app.features && app.features.length > 0 && <FeatureGallery appName={app.shortName ?? app.name} features={app.features} />}
-      {surfaces && <WidgetShowcase appName={app.shortName ?? app.name} surfaces={surfaces} />}
+      {!summary && app.features && app.features.length > 0 && <FeatureGallery appName={app.shortName ?? app.name} features={app.features} />}
     </article>
   );
 }
