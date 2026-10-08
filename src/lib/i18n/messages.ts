@@ -14,6 +14,8 @@ const en = {
   hero: {
     role: "Flutter Developer",
     intro: "Co-founder of Capple and WeDream AI, building the apps and their backends.",
+    opportunities: "Seeking a Flutter Developer role at fresher level; also open to native mobile development internships.",
+    availability: "Hanoi · Onsite or remote · Available to start immediately",
     explore: "View projects",
     gallery: "Explore three mobile app projects",
   },
@@ -48,6 +50,8 @@ const vi: Messages = {
   hero: {
     role: "Lập trình viên Flutter",
     intro: "Đồng sáng lập Capple và WeDream AI, trực tiếp phát triển ứng dụng và backend.",
+    opportunities: "Tìm cơ hội Flutter Developer ở cấp Fresher; đồng thời mở với vị trí thực tập phát triển ứng dụng native.",
+    availability: "Hà Nội · Onsite hoặc remote · Có thể bắt đầu ngay",
     explore: "Xem dự án",
     gallery: "Khám phá ba dự án ứng dụng di động",
   },

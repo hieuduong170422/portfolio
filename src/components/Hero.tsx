@@ -23,6 +23,10 @@ export function Hero() {
           <h1>{site.name}</h1>
           <p className={styles.role}>{t.hero.role}</p>
           <p className={styles.description}>{t.hero.intro}</p>
+          <div className={styles.availability}>
+            <p>{t.hero.opportunities}</p>
+            <p className={styles.location}>{t.hero.availability}</p>
+          </div>
           <div className={styles.actions}>
             <a href="#work" className={styles.primaryLink}>{t.hero.explore} <ArrowDown size={16} /></a>
             <a href={site.cvPath} download className={styles.contactLink}>{t.nav.cv} <ArrowDown size={16} /></a>

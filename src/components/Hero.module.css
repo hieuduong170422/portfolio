@@ -5,6 +5,8 @@
 .role { margin-top: 12px; font-size: 20px; color: var(--secondary); }
 .intro h1 { font-size: clamp(40px, 4.5vw, 60px); line-height: 1.15; text-wrap: balance; letter-spacing: -.065em; font-weight: 550; }
 .description { margin-top: 16px; max-width: 400px; font-size: 16px; line-height: 1.8; color: var(--secondary); }
+.availability { margin-top: 20px; max-width: 440px; padding-left: 14px; border-left: 2px solid var(--accent); font-size: 14px; line-height: 1.7; color: var(--foreground); }
+.location { margin-top: 8px; font-size: 13px; color: var(--secondary); text-wrap: pretty; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 24px; font-size: 16px; }
 .primaryLink, .contactLink { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 46px; }
 .primaryLink { padding: 0 22px; border-radius: 99px; background: var(--foreground); color: var(--background); transition: transform .25s; }
