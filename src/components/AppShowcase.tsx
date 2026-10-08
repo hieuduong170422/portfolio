@@ -12,6 +12,7 @@ import { FeatureGallery } from "./FeatureGallery";
 import type { AppCaseStudy } from "@/lib/apps";
 import { imageSizes } from "@/lib/imageSizes";
 import { warmScreenImage } from "@/lib/warmScreenImage";
+import { preloadShopSheet } from "./ShopSprite";
 import { chapterIndexOf, getChapterRanges } from "@/lib/chapters";
 import { useWheelSteps } from "./useWheelSteps";
 import visual from "./ProjectVisual.module.css";
@@ -44,6 +45,23 @@ export function AppShowcase({ app, variant = "full" }: { app: AppCaseStudy; vari
   const goToScreen = useCallback((src: string) => {
     const index = app.screens.findIndex((screen) => screen.src === src);
     if (index >= 0) setSelected(index);
+  }, [app.screens]);
+  useEffect(() => {
+    // Once the page is idle, fetch this project's other screens so stepping through them is instant.
+    const warmAll = () => {
+      // Shop and widgets draw their own content, so their placeholder images are not needed.
+      app.screens
+        .filter((screen) => screen.effect !== "shop" && screen.effect !== "widgets")
+        .forEach((screen) => warmScreenImage(screen, imageSizes.showcase));
+      if (app.screens.some((screen) => screen.effect === "shop")) preloadShopSheet();
+    };
+    // Safari only gained requestIdleCallback recently; fall back to a short delay.
+    if (typeof window.requestIdleCallback === "function") {
+      const handle = window.requestIdleCallback(warmAll, { timeout: 3000 });
+      return () => window.cancelIdleCallback(handle);
+    }
+    const timer = window.setTimeout(warmAll, 1500);
+    return () => window.clearTimeout(timer);
   }, [app.screens]);
   useEffect(() => {
     // The scan ends with an automatic transition; fetch its result during the scan.
