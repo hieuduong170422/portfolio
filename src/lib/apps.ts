@@ -64,10 +64,8 @@ export const apps: AppCaseStudy[] = [
     description:
       "AI calorie tracker that logs meals from a photo, a text chat or voice. Live on iOS and Android with paying users. I lead app, backend and release work in a five-person team.",
     role: "Co-founder & Lead Developer",
-    // Source: calories_app git history and lib/ (hand-written Dart, excluding generated and l10n files).
+    // Source: calories_app lib/features and lib/l10n.
     scale: [
-      { label: "Hand-written Dart", value: "~88k" },
-      { label: "Of 700+ commits", value: "~58%" },
       { label: "Feature modules", value: "8" },
       { label: "Languages, incl. RTL", value: "14" },
     ],

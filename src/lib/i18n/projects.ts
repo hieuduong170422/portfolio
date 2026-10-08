@@ -15,8 +15,6 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
     description: "Ứng dụng theo dõi calo bằng AI, ghi bữa ăn qua ảnh chụp, chat bằng chữ hoặc giọng nói. Đã phát hành trên iOS và Android, có người dùng trả phí. Tôi phụ trách ứng dụng, backend và phát hành trong đội ngũ 5 người.",
     role: "Đồng sáng lập & Lập trình viên chính",
     scale: [
-      { label: "Dòng Dart tự viết", value: "~88k" },
-      { label: "Trong 700+ commit", value: "~58%" },
       { label: "Feature module", value: "8" },
       { label: "Ngôn ngữ, gồm cả RTL", value: "14" },
     ],
