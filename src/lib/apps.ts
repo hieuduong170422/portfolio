@@ -9,7 +9,7 @@ export type AppScreen = {
   /** Short label for the screen within a multi-screen showcase chapter. */
   step?: string;
   /** Optional interactive demo shown only inside a project showcase. */
-  effect?: "food-scan" | "dream-typing" | "widgets";
+  effect?: "food-scan" | "dream-typing" | "widgets" | "shop";
 };
 
 export type AppFeature = {
@@ -60,6 +60,7 @@ export const apps: AppCaseStudy[] = [
     chapters: [
       { title: "Overview", screenCount: 2, description: "Calories, macros, daily tasks and meals in one dashboard, and a single sheet for every way to log." },
       { title: "Log a meal", screenCount: 4, description: "Snap a photo, describe the meal in a chat or just say it. AI estimates calories and macros, and every ingredient stays editable before it reaches the diary." },
+      { title: "Shop & app icons", description: "In-app coins buy alternate app icons or a mystery box with free scans or a logo. Tap a logo to buy or activate it, then swipe to the home screen: the Capple icon changes there, as it does on a real iPhone." },
       { title: "Widgets & reminders", description: "Native home-screen widgets in Swift (WidgetKit, iOS 16+) and Kotlin keep calories and streaks one glance away. Local reminders follow each user's time zone, react to calories logged so far and nudge inactive users after 3 and 7 days." },
     ],
     tagline: "AI-powered calorie & nutrition tracking app",
@@ -140,6 +141,13 @@ export const apps: AppCaseStudy[] = [
         alt: "Capple voice logging sheet with a microphone, a Listening status and Cancel and Done buttons",
         caption: "Voice logging — speech-to-text turns a spoken meal into an entry",
         step: "Voice",
+      },
+      {
+        src: "/images/capple/shop.jpg",
+        hasDynamicIsland: true,
+        alt: "Capple shop with twelve app icon logos priced in coins, a mystery box offering scans or a logo, and a Pay with coin button",
+        caption: "Shop — buy a logo or open a mystery box with coins",
+        effect: "shop",
       },
       {
         src: "/images/capple/widgets/ios-today.png",

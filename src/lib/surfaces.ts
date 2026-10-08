@@ -10,7 +10,6 @@ export type SurfaceNotification = { id: string; title: string; body: string; tim
 export type AppSurfaces = {
   widgets: SurfaceWidget[];
   notifications: SurfaceNotification[];
-  iconSrc: string;
 };
 
 // Exported at 3x from 164×164 iOS small widget frames.
@@ -23,8 +22,6 @@ function buildWidgets(titles: Record<WidgetId, string>): SurfaceWidget[] {
   return WIDGET_IDS.map((id) => ({ id, src: `/images/capple/widgets/ios-${id}.png`, ...IOS_WIDGET_SIZE, title: titles[id] }));
 }
 
-const iconSrc = "/images/capple/widgets/app-icon.png";
-
 const cappleEn: AppSurfaces = {
   widgets: buildWidgets({ today: "Today overview", streak: "Streak", progress: "Weight gain", loss: "Weight loss", "quick-log": "Quick log" }),
   notifications: [
@@ -32,7 +29,6 @@ const cappleEn: AppSurfaces = {
     { id: "dinner", title: "Don't skip dinner 🍽", body: "You've only eaten 860 kcal (42% of goal). Add a balanced dinner to stay on track.", time: "now" },
     { id: "reengage", title: "We miss you! 👋", body: "It's been a few days. One quick log and you're back on track.", time: "now" },
   ],
-  iconSrc,
 };
 
 const cappleVi: AppSurfaces = {
@@ -42,7 +38,6 @@ const cappleVi: AppSurfaces = {
     { id: "dinner", title: "Đừng bỏ bữa tối nha 🍽", body: "Hôm nay bạn mới ăn 860 kcal (42% goal). Bổ sung thêm bữa tối để đủ năng lượng.", time: "now" },
     { id: "reengage", title: "Nhớ bạn quá! 👋", body: "Mấy ngày rồi không thấy. Chỉ cần 1 lần ghi là trở lại quỹ đạo.", time: "bây giờ" },
   ],
-  iconSrc,
 };
 
 const surfaces: Partial<Record<string, Record<Locale, AppSurfaces>>> = {

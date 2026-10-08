@@ -7,6 +7,7 @@ import { getSurfaces } from "@/lib/surfaces";
 import styles from "./ProjectVisual.module.css";
 import { AppScreenshot } from "./AppScreenshot";
 import { WidgetsScreen } from "./WidgetsScreen";
+import { ShopScreen } from "./ShopScreen";
 
 /** Shared image slot. Adding a screenshot replaces the branded preview everywhere. */
 export function ProjectScreen({ app, index = 0, preload = false, sizes = "(max-width: 640px) 220px, 280px", interactive = false, scrollHintId, onScanComplete }: {
@@ -24,6 +25,9 @@ export function ProjectScreen({ app, index = 0, preload = false, sizes = "(max-w
   const surfaces = getSurfaces(app.slug, locale);
   if (screen?.effect === "widgets" && interactive && surfaces) {
     return <WidgetsScreen screen={screen} appName={app.shortName ?? app.name} surfaces={surfaces} sizes={sizes} />;
+  }
+  if (screen?.effect === "shop" && interactive) {
+    return <ShopScreen appName={app.shortName ?? app.name} />;
   }
   if (screen) {
     return <AppScreenshot screen={screen} label={app.name} sizes={sizes} preload={preload}

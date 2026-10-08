@@ -34,6 +34,14 @@ const en = {
     previous: "Previous", next: "Next", previousStep: "Previous preview screen", nextStep: "Next preview screen",
   },
   typing: { replay: "Replay", replayLabel: "Replay dream typing animation" },
+  shop: {
+    title: "Shop", back: "Back", balance: "{count} coins", logo: "LOGO", other: "OTHER", free: "Free", owned: "Owned",
+    payWith: "Pay with {count} coin", activate: "Activate", activated: "Activated", notEnough: "Not enough coins",
+    purchased: "Purchase successful!", mysteryBox: "Mystery box", scanTag: "1–3 Scan", logoTag: "1 Logo",
+    openBox: "Open the mystery box for {count} coins", logoTitle: "Congratulations!", logoDesc: "You got a new logo: {name}",
+    scanTitle: "Jackpot!", scanDesc: "You got {count} free scans!", gotIt: "Got it",
+    iconChanged: "You have changed the icon for “{name}”.", ok: "OK", selectLogo: "{name} logo",
+  },
   scan: {
     ready: "Tap to scan", capturing: "Photo captured", scanning: "Scanning your meal…", complete: "Scan complete",
     again: "Take another photo and scan the meal", capture: "Take a photo and scan the meal", replay: "Tap to scan again", photo: "Take a photo",
@@ -71,6 +79,14 @@ const vi: Messages = {
     previous: "Quay lại", next: "Tiếp theo", previousStep: "Xem màn hình trước", nextStep: "Xem màn hình tiếp theo",
   },
   typing: { replay: "Xem lại", replayLabel: "Xem lại hiệu ứng nhập nội dung giấc mơ" },
+  shop: {
+    title: "Cửa hàng", back: "Quay lại", balance: "{count} coin", logo: "LOGO", other: "KHÁC", free: "Miễn phí", owned: "Đã mua",
+    payWith: "Thanh toán {count} coin", activate: "Kích hoạt", activated: "Đã kích hoạt", notEnough: "Không đủ coin",
+    purchased: "Mua thành công!", mysteryBox: "Hộp bí ẩn", scanTag: "1–3 lượt quét", logoTag: "1 Logo",
+    openBox: "Mở hộp bí ẩn với {count} coin", logoTitle: "Chúc mừng!", logoDesc: "Bạn nhận được logo mới: {name}",
+    scanTitle: "Trúng lớn!", scanDesc: "Bạn nhận được {count} lượt quét miễn phí!", gotIt: "Đã hiểu",
+    iconChanged: "Bạn đã thay đổi biểu tượng cho “{name}”.", ok: "OK", selectLogo: "Logo {name}",
+  },
   scan: {
     ready: "Chạm để quét", capturing: "Đã chụp ảnh", scanning: "Đang quét món ăn…", complete: "Quét hoàn tất",
     again: "Chụp ảnh mới và quét món ăn", capture: "Chụp ảnh và quét món ăn", replay: "Chạm để quét lại", photo: "Chụp ảnh",

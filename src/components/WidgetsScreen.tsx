@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import type { AppScreen } from "@/lib/apps";
 import type { AppSurfaces } from "@/lib/surfaces";
 import { WidgetStack } from "./WidgetStack";
+import { ShopSprite } from "./ShopSprite";
+import { findLogo, useShopState } from "@/lib/shopDemo";
 import styles from "./WidgetsScreen.module.css";
 
 /** Grey stand-in apps: four beside the widget, three rows below it, four in the dock. */
@@ -38,6 +39,8 @@ export function WidgetsScreen({ screen, appName, surfaces, sizes }: {
   sizes: string;
 }) {
   const banner = useBannerSequence(surfaces.notifications.length);
+  // The Capple icon follows the logo activated in the shop demo.
+  const appIcon = findLogo(useShopState().active).sprite;
 
   return (
     <div className={styles.home}>
@@ -49,7 +52,7 @@ export function WidgetsScreen({ screen, appName, surfaces, sizes }: {
       <ul className={styles.banners} aria-hidden="true">
         {surfaces.notifications.map((notification, i) => (
           <li key={notification.id} className={styles.banner} data-visible={banner === i}>
-            <Image src={surfaces.iconSrc} width={100} height={100} alt="" className={styles.icon} />
+            <ShopSprite sprite={appIcon} size="9.6cqw" className={styles.icon} />
             <div className={styles.copy}>
               <p className={styles.titleRow}><strong className={styles.title}>{notification.title}</strong><span>{notification.time}</span></p>
               <p className={styles.body}>{notification.body}</p>
@@ -62,7 +65,11 @@ export function WidgetsScreen({ screen, appName, surfaces, sizes }: {
         <div className={styles.widgetCell}>
           <WidgetStack appName={appName} widgets={surfaces.widgets} sizes={sizes} />
         </div>
-        {Array.from({ length: GRID_APPS }, (_, i) => (
+        <span className={styles.app}>
+          <ShopSprite sprite={appIcon} size="15cqw" className={styles.appIcon} />
+          <span className={styles.appName}>{appName}</span>
+        </span>
+        {Array.from({ length: GRID_APPS - 1 }, (_, i) => (
           <span key={i} className={styles.app} aria-hidden="true"><i /><b /></span>
         ))}
       </div>

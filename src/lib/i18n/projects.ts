@@ -29,6 +29,7 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
     chapters: [
       { title: "Tổng quan", description: "Calo, các chất dinh dưỡng, nhiệm vụ hằng ngày và bữa ăn trong một màn hình, cùng một bảng cho mọi cách ghi bữa ăn." },
       { title: "Ghi bữa ăn", description: "Chụp ảnh, mô tả bằng chat hoặc nói trực tiếp. AI ước tính calo và các chất dinh dưỡng, mọi nguyên liệu đều chỉnh được trước khi lưu vào nhật ký." },
+      { title: "Cửa hàng & icon app", description: "Dùng coin trong app để mua icon app thay thế hoặc hộp bí ẩn tặng lượt quét hay logo. Bấm vào logo để mua hoặc kích hoạt, rồi chuyển sang màn hình chính: icon Capple ở đó đổi theo, giống trên iPhone thật." },
       { title: "Widget & nhắc nhở", description: "Widget màn hình chính viết native bằng Swift (WidgetKit, iOS 16+) và Kotlin giúp xem calo và chuỗi ngày chỉ trong một cái nhìn. Nhắc nhở cục bộ chạy theo múi giờ của từng người, dựa trên lượng calo đã ghi và gọi người dùng quay lại sau 3 và 7 ngày không mở app." },
     ],
     screens: [
@@ -38,6 +39,7 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
       { step: "Kết quả", alt: "Kết quả quét Capple với calo, các chất dinh dưỡng và danh sách nguyên liệu có thể chỉnh sửa", caption: "Kết quả AI ước tính từ ảnh — bạn có thể chỉnh lại nguyên liệu và khẩu phần" },
       { step: "Chat", alt: "Phản hồi chat Capple ước tính cơm gà nướng rau củ 350 g, 520 kcal, kèm đạm, chất bột đường và nút Add to Diary", caption: "Ghi bằng chat — mô tả bữa ăn để nhận lại calo và dinh dưỡng" },
       { step: "Giọng nói", alt: "Bảng ghi bằng giọng nói Capple với micro, trạng thái Listening và hai nút Cancel, Done", caption: "Ghi bằng giọng nói — chuyển lời nói thành mục nhật ký" },
+      { alt: "Cửa hàng Capple với mười hai logo icon app có giá bằng coin, hộp bí ẩn tặng lượt quét hoặc logo, và nút thanh toán bằng coin", caption: "Cửa hàng — mua logo hoặc mở hộp bí ẩn bằng coin" },
       { alt: "Màn hình chính iPhone với widget Capple vuốt được để xem calo hôm nay, chuỗi ngày, tăng cân, giảm cân và ghi nhanh, giữa các app mẫu màu xám, kèm thông báo nhắc nhở hiện dạng banner", caption: "Widget màn hình chính và nhắc nhở theo ngữ cảnh" },
     ],
     features: [
