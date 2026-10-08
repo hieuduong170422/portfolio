@@ -6,5 +6,5 @@ export const site = {
   gitlab: "https://gitlab.com/minhieuduong",
   phone: "0866904533",
   phoneHref: "tel:+84866904533",
-  cvPath: "/Hieu-Duong-Minh-TopCV.vn-061026.162216.pdf",
+  cvPath: "/Hieu-Duong-Minh-CV.pdf",
 };

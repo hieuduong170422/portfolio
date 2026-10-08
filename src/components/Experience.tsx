@@ -36,6 +36,11 @@ export function Experience() {
             <div className={styles.position}>
               <h3 className={styles.role}>{entry.role}</h3>
               <p className={styles.organization}>{entry.org}</p>
+              <ul className={styles.bullets}>
+                {entry.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         ))}

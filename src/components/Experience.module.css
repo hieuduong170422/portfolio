@@ -30,6 +30,17 @@
 .position { min-width: 0; }
 .role { font-weight: 500; color: var(--foreground); text-wrap: pretty; }
 .organization { margin-top: 4px; color: var(--secondary); }
+.bullets {
+  display: grid;
+  gap: 6px;
+  max-width: 72ch;
+  margin: 12px 0 0;
+  padding-left: 18px;
+  list-style: disc;
+  color: var(--secondary);
+  font-size: 15px;
+}
+.bullets li { text-wrap: pretty; }
 @media (max-width: 700px) {
   .section { padding: 40px 24px; }
   .heading { margin-bottom: 24px; }
