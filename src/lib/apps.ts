@@ -206,7 +206,6 @@ export const apps: AppCaseStudy[] = [
       { label: "Paying users", value: "100+" },
       { label: "Platform", value: "App Store · Google Play" },
     ],
-    statsNote: "Metrics reported in CV · from February 2026.",
     status: "live",
   },
   {

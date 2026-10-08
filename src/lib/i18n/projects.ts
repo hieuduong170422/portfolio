@@ -75,7 +75,6 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
       { label: "Người dùng mua gói", value: "100+" },
       { label: "Nền tảng", value: "App Store · Google Play" },
     ],
-    statsNote: "Số liệu theo CV, ghi nhận từ 02/2026.",
   },
   wedream: {
     category: "Giấc mơ · AI", tagline: "Phân tích giấc mơ bằng AI",
