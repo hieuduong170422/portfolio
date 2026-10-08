@@ -3,10 +3,12 @@ export type Theme = "light" | "dark";
 export const THEME_STORAGE_KEY = "theme";
 export const THEME_CHANGE_EVENT = "themechange";
 
+export const DEFAULT_THEME: Theme = "dark";
+
 export function getStoredTheme(): Theme {
-  if (typeof window === "undefined") return "light";
+  if (typeof window === "undefined") return DEFAULT_THEME;
   const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
-  return stored === "dark" ? "dark" : "light";
+  return stored === "light" ? "light" : DEFAULT_THEME;
 }
 
 export function applyTheme(theme: Theme) {
@@ -15,12 +17,12 @@ export function applyTheme(theme: Theme) {
   window.dispatchEvent(new CustomEvent(THEME_CHANGE_EVENT, { detail: theme }));
 }
 
-/** Inline script source, run before paint to avoid a light/dark flash. */
+/** Inline script source, run before paint to avoid a light/dark flash. The HTML ships dark. */
 export const THEME_INIT_SCRIPT = `
 (function(){
   try {
     var t = localStorage.getItem('${THEME_STORAGE_KEY}');
-    if (t === 'dark') document.documentElement.classList.add('dark');
+    if (t === 'light') document.documentElement.classList.remove('dark');
   } catch (e) {}
 })();
 `;

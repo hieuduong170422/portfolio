@@ -4,6 +4,7 @@ import { useSyncExternalStore } from "react";
 import {
   THEME_CHANGE_EVENT,
   type Theme,
+  DEFAULT_THEME,
   getStoredTheme,
 } from "@/lib/theme";
 
@@ -13,7 +14,7 @@ function subscribe(callback: () => void) {
 }
 
 function getServerSnapshot(): Theme {
-  return "light";
+  return DEFAULT_THEME;
 }
 
 export function useTheme(): Theme {
