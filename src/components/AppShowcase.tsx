@@ -134,7 +134,7 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
               </a>
             ))}</div>
           )}
-          {(app.role || app.tech.length > 0) && (
+          {(app.role || app.highlights || app.tech.length > 0) && (
             <details className={styles.details} open>
               <summary>
                 <CodeXml size={20} aria-hidden="true" />
@@ -142,7 +142,15 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
                 <ChevronDown className={styles.detailsChevron} size={32} aria-hidden="true" />
               </summary>
               <div className={styles.detailsBody}>
+                {app.scale && (
+                  <dl className={styles.scale}>{app.scale.map((item) => (
+                    <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>
+                  ))}</dl>
+                )}
                 {app.responsibilities && <p>{app.responsibilities}</p>}
+                {app.highlights && (
+                  <ul className={styles.highlights}>{app.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>
+                )}
                 {app.tech.length > 0 && <ul aria-label={t.preview.technologies}>{app.tech.map((tech) => <li key={tech}>{tech}</li>)}</ul>}
               </div>
             </details>

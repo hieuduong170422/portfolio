@@ -29,6 +29,10 @@ export type AppCaseStudy = {
   chapters: { title: string; description: string }[];
   role?: string;
   responsibilities?: string;
+  /** Verified engineering figures, e.g. from the app's repository. */
+  scale?: { label: string; value: string }[];
+  /** Problems solved and systems shipped, one sentence each. */
+  highlights?: string[];
   tech: string[];
   screens: AppScreen[];
   features?: AppFeature[];
@@ -58,25 +62,41 @@ export const apps: AppCaseStudy[] = [
     ],
     tagline: "AI-powered calorie & nutrition tracking app",
     description:
-      "AI calorie tracking from meal photos, with paying users on iOS and Android. I lead app, backend and release development in a five-person team.",
+      "AI calorie tracker that logs meals from a photo, a text chat or voice. Live on iOS and Android with paying users. I lead app, backend and release work in a five-person team.",
     role: "Co-founder & Lead Developer",
-    responsibilities:
-      "Flutter mobile app · UI from designer-provided layouts · Node.js/MongoDB backend · AI integration · GitLab CI/CD · Testing and performance · Store management since July 2026",
+    // Source: calories_app git history and lib/ (hand-written Dart, excluding generated and l10n files).
+    scale: [
+      { label: "Hand-written Dart", value: "~88k" },
+      { label: "Of 700+ commits", value: "~58%" },
+      { label: "Feature modules", value: "8" },
+      { label: "Languages, incl. RTL", value: "14" },
+    ],
+    highlights: [
+      "Built the Flutter codebase with Clean Architecture across 8 feature modules (auth, food scan, nutrition, cycle tracking, cheat day, subscription, shop, student verification), localized into 14 languages including Arabic.",
+      "Integrated Apple HealthKit and Health Connect for steps, workouts and cycle data, and shipped a native iOS 16+ lock-screen widget in Swift/WidgetKit.",
+      "Designed retention systems: streaks with freeze and auto-rescue, badges, a shop with mystery boxes, cycle tracking whose predictions improve with each logged month, and rotating push re-engagement via FCM.",
+      "Shipped growth loops: referral and gift codes via deep links, Strava-style meal sharing, and a student plan with OTP verification and regional pricing.",
+      "Ran monetization experiments on free daily scan limits and instrumented funnels with Mixpanel and Firebase Analytics. Added force update, in-app update prompts and per-version What's New.",
+      "Built the Node.js/MongoDB backend and GitLab CI/CD that deploys on pushes to dev. Manage App Store Connect and Google Play Console releases since July 2026.",
+    ],
     tech: [
       "Flutter",
       "Dart",
       "Riverpod",
       "Clean Architecture",
-      "Dio",
+      "GoRouter",
+      "Freezed",
+      "Retrofit/Dio",
+      "Swift · WidgetKit",
+      "HealthKit · Health Connect",
       "GPT-4o mini",
-      "Firebase",
+      "Firebase · FCM",
+      "Mixpanel",
+      "RevenueCat",
+      "i18n (14 locales)",
       "Node.js",
       "MongoDB",
-      "REST API",
-      "RevenueCat",
-      "SharedPreferences",
       "GitLab CI/CD",
-      "Flutter DevTools",
     ],
     screens: [
       {

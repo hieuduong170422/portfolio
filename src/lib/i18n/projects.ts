@@ -3,7 +3,7 @@ import type { Locale } from "./messages";
 
 type ScreenCopy = Pick<AppScreen, "alt" | "caption">;
 type FeatureCopy = Pick<AppFeature, "title" | "category" | "description"> & { screens: (ScreenCopy & { title: string })[] };
-type ProjectCopy = Pick<AppCaseStudy, "category" | "tagline" | "description" | "chapters" | "role" | "responsibilities" | "stats" | "statsNote" | "statusLabel"> & {
+type ProjectCopy = Pick<AppCaseStudy, "category" | "tagline" | "description" | "chapters" | "role" | "responsibilities" | "stats" | "statsNote" | "statusLabel" | "scale" | "highlights"> & {
   screens: ScreenCopy[];
   features?: FeatureCopy[];
 };
@@ -12,9 +12,22 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
   capple: {
     category: "Dinh dưỡng · AI",
     tagline: "Ứng dụng theo dõi calo và dinh dưỡng bằng AI",
-    description: "Theo dõi calo từ ảnh bữa ăn, đã có người dùng trả phí trên iOS và Android. Tôi phụ trách ứng dụng, backend và phát hành trong đội ngũ 5 người.",
+    description: "Ứng dụng theo dõi calo bằng AI, ghi bữa ăn qua ảnh chụp, chat bằng chữ hoặc giọng nói. Đã phát hành trên iOS và Android, có người dùng trả phí. Tôi phụ trách ứng dụng, backend và phát hành trong đội ngũ 5 người.",
     role: "Đồng sáng lập & Lập trình viên chính",
-    responsibilities: "Phát triển ứng dụng Flutter từ thiết kế UI/UX; xây dựng backend Node.js/MongoDB, tích hợp AI và thiết lập GitLab CI/CD. Phụ trách kiểm thử, tối ưu hiệu năng và quản lý phát hành từ 07/2026.",
+    scale: [
+      { label: "Dòng Dart tự viết", value: "~88k" },
+      { label: "Trong 700+ commit", value: "~58%" },
+      { label: "Feature module", value: "8" },
+      { label: "Ngôn ngữ, gồm cả RTL", value: "14" },
+    ],
+    highlights: [
+      "Xây dựng codebase Flutter theo Clean Architecture với 8 feature module (auth, quét món ăn, dinh dưỡng, theo dõi chu kỳ, cheat day, gói đăng ký, cửa hàng, xác minh sinh viên), bản địa hóa 14 ngôn ngữ gồm cả tiếng Ả Rập.",
+      "Tích hợp Apple HealthKit và Health Connect cho bước chân, bài tập và chu kỳ; phát triển widget màn hình khóa iOS 16+ bằng native Swift/WidgetKit.",
+      "Thiết kế hệ thống giữ chân người dùng: streak có freeze và tự động cứu, huy hiệu, cửa hàng với mystery box, theo dõi chu kỳ dự đoán chính xác dần theo số tháng ghi nhận, thông báo FCM xoay vòng để kéo người dùng quay lại.",
+      "Xây dựng cơ chế tăng trưởng: mã giới thiệu và mã quà tặng qua deep link, chia sẻ bữa ăn kiểu Strava, gói sinh viên có xác minh OTP và giá theo khu vực.",
+      "Thử nghiệm monetization với giới hạn lượt quét miễn phí mỗi ngày, đo funnel bằng Mixpanel và Firebase Analytics. Thêm force update, nhắc cập nhật trong ứng dụng và màn hình What's New theo từng phiên bản.",
+      "Xây dựng backend Node.js/MongoDB và GitLab CI/CD tự động triển khai khi cập nhật nhánh dev. Quản lý phát hành trên App Store Connect và Google Play Console từ 07/2026.",
+    ],
     chapters: [
       { title: "Tổng quan", description: "Xem calo còn lại, các chất dinh dưỡng, nhiệm vụ hằng ngày và các bữa ăn." },
       { title: "Quét món ăn", description: "Chụp ảnh bữa ăn để AI hỗ trợ nhận diện món ăn và ước tính dinh dưỡng." },

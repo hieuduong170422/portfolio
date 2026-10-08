@@ -55,7 +55,13 @@
 .detailsBody { padding: 16px 18px 18px; }
 .details p { line-height: 1.7; color: var(--secondary); }
 .details ul { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.scale { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 12px; margin: 0 0 18px; }
+.scale > div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 2px; }
+.scale dd { margin: 0; font-size: 20px; font-weight: 550; letter-spacing: -.03em; color: var(--foreground); font-variant-numeric: tabular-nums; }
+.scale dt { font-size: 13px; line-height: 1.4; color: var(--secondary); }
 .details li { padding: 4px 8px; border: 1px solid var(--project-line); border-radius: 6px; background: var(--background); color: var(--foreground); font-size: 14px; }
+.details .highlights { display: grid; gap: 8px; margin: 0 0 4px; padding-left: 18px; list-style: disc; }
+.details .highlights li { padding: 0; border: 0; border-radius: 0; background: none; color: var(--secondary); font-size: 15px; line-height: 1.6; text-wrap: pretty; }
 .project button:focus-visible, .project a:focus-visible, .details summary:focus-visible { outline: 2px solid var(--project-color); outline-offset: 4px; }
 .project[data-project="wedream"] .stageRing { width: 110%; top: 16%; transform: rotate(-20deg); border-radius: 45%; }
 .project[data-project="focuslock"] .stageRing { border-radius: 24%; transform: rotate(-12deg); }
