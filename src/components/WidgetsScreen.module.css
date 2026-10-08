@@ -1,6 +1,5 @@
 /* Sized in cqw of the iPhone frame so the home screen scales with the device. */
-/* The top band stays clear for reminder banners so they never cover the widget. */
-.home { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 42cqw 6.5cqw 0; overflow: hidden; background: linear-gradient(165deg, #1d2a4d, #3a3f7a 55%, #7a4f7f); color: #fff; user-select: none; }
+.home { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 17cqw 6.5cqw 0; overflow: hidden; background: linear-gradient(165deg, #1d2a4d, #3a3f7a 55%, #7a4f7f); color: #fff; user-select: none; }
 
 .statusBar { position: absolute; top: 5.6cqw; left: 11cqw; right: 9cqw; display: flex; align-items: center; justify-content: space-between; font-size: 3.8cqw; font-weight: 600; letter-spacing: -.01em; }
 .battery { position: relative; width: 6.4cqw; height: 3cqw; border: .4cqw solid rgb(255 255 255 / 55%); border-radius: 1cqw; }
@@ -48,3 +47,11 @@
 .titleRow span { flex-shrink: 0; margin-left: auto; font-size: 3.1cqw; color: #6b6b73; }
 .title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
 .body { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 3.6cqw; line-height: 1.3; color: #1c1c1f; }
+
+/* The top band stays clear for banners or a Live Activity so they never cover the widget. */
+.home[data-top-band="banners"] { padding-top: 42cqw; }
+.home[data-top-band="live"] { padding-top: 58cqw; }
+.liveActivity { position: absolute; z-index: 3; top: 14cqw; left: 4cqw; right: 4cqw; animation: liveIn .6s cubic-bezier(.2, .9, .3, 1.1) .4s both; }
+.liveActivity img { display: block; width: 100%; height: auto; filter: drop-shadow(0 2cqw 4cqw rgb(0 0 0 / 45%)); }
+@keyframes liveIn { from { opacity: 0; transform: translateY(-40%); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .liveActivity { animation: none; } }

@@ -1,15 +1,24 @@
 import type { Locale } from "./i18n/messages";
 
-// Home-screen widgets and notifications shipped outside the app itself.
-// Widget art: Figma "Capple" file, section "Widget" (1187:9987).
-// Notification copy: calories_app lib/core/services/notification_texts.dart.
+// Home-screen widgets, notifications and Live Activities shipped outside the app itself.
+// Capple widget art: Figma "Capple" file, section "Widget" (1187:9987); notification copy:
+// calories_app lib/core/services/notification_texts.dart. WeDream widgets: wedream_app ios/wedream
+// and android .../widget. FocusLock widgets and Live Activity: focusBlock/FocusBlockWidget.
 export type SurfaceWidget = { id: string; src: string; width: number; height: number; title: string };
 
 export type SurfaceNotification = { id: string; title: string; body: string; time: string };
 
+export type SurfaceLiveActivity = { src: string; width: number; height: number; label: string };
+
 export type AppSurfaces = {
   widgets: SurfaceWidget[];
-  notifications: SurfaceNotification[];
+  notifications?: SurfaceNotification[];
+  /** Shown in the top band, where a Live Activity sits on a real lock screen. */
+  liveActivity?: SurfaceLiveActivity;
+  /** App icon for banners and the home grid; Capple falls back to the logo picked in its shop demo. */
+  iconSrc?: string;
+  /** CSS background for the home screen wallpaper. */
+  wallpaper?: string;
 };
 
 // Exported at 3x from 164×164 iOS small widget frames.
@@ -40,8 +49,66 @@ const cappleVi: AppSurfaces = {
   ],
 };
 
+// Exported at 1x (164×164) from the WeDream Figma frames: dark and light variants.
+const WEDREAM_SIZE = { width: 164, height: 164 };
+const WEDREAM_IDS = ["mood-dark", "patterns-dark", "add-dark", "mood-light", "patterns-light", "add-light"] as const;
+type WeDreamId = (typeof WEDREAM_IDS)[number];
+
+function buildWeDreamWidgets(titles: Record<WeDreamId, string>): SurfaceWidget[] {
+  return WEDREAM_IDS.map((id) => ({ id, src: `/images/wedream/widgets/${id}.png`, ...WEDREAM_SIZE, title: titles[id] }));
+}
+
+const wedreamBase = {
+  iconSrc: "/images/wedream/widgets/app-icon.png",
+  wallpaper: "linear-gradient(170deg, #121218, #2a2540 55%, #4b3a63)",
+};
+
+const wedreamEn: AppSurfaces = {
+  ...wedreamBase,
+  widgets: buildWeDreamWidgets({
+    "mood-dark": "Dream stability · dark", "patterns-dark": "Recurring patterns · dark", "add-dark": "Add a dream · dark",
+    "mood-light": "Dream stability · light", "patterns-light": "Recurring patterns · light", "add-light": "Add a dream · light",
+  }),
+};
+
+const wedreamVi: AppSurfaces = {
+  ...wedreamBase,
+  widgets: buildWeDreamWidgets({
+    "mood-dark": "Độ ổn định · tối", "patterns-dark": "Mẫu lặp lại · tối", "add-dark": "Thêm giấc mơ · tối",
+    "mood-light": "Độ ổn định · sáng", "patterns-light": "Mẫu lặp lại · sáng", "add-light": "Thêm giấc mơ · sáng",
+  }),
+};
+
+// Exported at 1x (152×152) from the FocusLock widget frames.
+const FOCUS_SIZE = { width: 152, height: 152 };
+const FOCUS_IDS = ["time-lock-day", "day-lock-month", "locking"] as const;
+type FocusId = (typeof FOCUS_IDS)[number];
+
+function buildFocusWidgets(titles: Record<FocusId, string>): SurfaceWidget[] {
+  return FOCUS_IDS.map((id) => ({ id, src: `/images/focuslock/widgets/${id}.jpg`, ...FOCUS_SIZE, title: titles[id] }));
+}
+
+const focusBase = {
+  iconSrc: "/images/focuslock/widgets/app-icon.png",
+  wallpaper: "linear-gradient(170deg, #0b0b0d, #1c1c22 60%, #2c2c34)",
+};
+
+const focusEn: AppSurfaces = {
+  ...focusBase,
+  widgets: buildFocusWidgets({ "time-lock-day": "Time locked today", "day-lock-month": "Days locked this month", locking: "Locking in progress" }),
+  liveActivity: { src: "/images/focuslock/widgets/live-activity.png", width: 764, height: 320, label: "FocusLock Live Activity counting down a Social App block with 06:39:24 remaining" },
+};
+
+const focusVi: AppSurfaces = {
+  ...focusBase,
+  widgets: buildFocusWidgets({ "time-lock-day": "Thời gian khóa hôm nay", "day-lock-month": "Số ngày khóa trong tháng", locking: "Đang khóa" }),
+  liveActivity: { src: "/images/focuslock/widgets/live-activity.png", width: 764, height: 320, label: "Live Activity của FocusLock đếm ngược phiên chặn Social App còn 06:39:24" },
+};
+
 const surfaces: Partial<Record<string, Record<Locale, AppSurfaces>>> = {
   capple: { en: cappleEn, vi: cappleVi },
+  wedream: { en: wedreamEn, vi: wedreamVi },
+  focuslock: { en: focusEn, vi: focusVi },
 };
 
 export function getSurfaces(slug: string, locale: Locale): AppSurfaces | undefined {

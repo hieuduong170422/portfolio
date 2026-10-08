@@ -280,8 +280,9 @@ export const apps: AppCaseStudy[] = [
       { title: "Write a dream", description: "Watch a dream take shape with a fast typing preview, from the first line to the final thought." },
       { title: "Context & feelings", description: "Add emotional context, connect the dream to everyday life and choose a lens for the interpretation." },
       { title: "AI interpretation", description: "Scroll through the dream summary, emotion and pattern metrics, symbols and detailed interpretation." },
+      { title: "Home-screen widgets", description: "Native widgets on iOS (Swift, WidgetKit) and Android (Kotlin) in light and dark styles: dream stability, recurring patterns and a one-tap shortcut to log a new dream." },
     ],
-    tech: ["Flutter", "Dart", "Riverpod", "Clean Architecture", "Node.js", "MongoDB", "REST API", "GPT-4o mini", "Flutter DevTools"],
+    tech: ["Flutter", "Dart", "Riverpod", "Clean Architecture", "Swift · WidgetKit", "Kotlin · App Widgets", "Node.js", "MongoDB", "REST API", "GPT-4o mini", "Flutter DevTools"],
     screens: [
       {
         src: "/images/wedream/home.png",
@@ -309,6 +310,12 @@ export const apps: AppCaseStudy[] = [
         alt: "WeDream The Floating Library result with an illustration, dream summary, emotional metrics, symbols, detailed interpretation and suggestions",
         caption: "Scroll inside the phone to read the complete dream interpretation",
         scroll: { width: 786, height: 3228 },
+      },
+      {
+        src: "/images/wedream/widgets/mood-dark.png",
+        alt: "Phone home screen with a swipeable WeDream widget stack showing dream stability, recurring patterns and add-a-dream widgets in dark and light styles",
+        caption: "Home-screen widgets in light and dark styles",
+        effect: "widgets",
       },
     ],
     features: [
@@ -345,9 +352,9 @@ export const apps: AppCaseStudy[] = [
     name: "FocusLock",
     category: "Focus · iOS",
     tagline: "A Swift project for more focused days",
-    description: "An iOS app for blocking distractions and limiting screen time. I’m building it in Swift with substantial AI coding assistance; the demo shows design previews.",
+    description: "An iOS app for blocking distractions and limiting screen time, built in Swift on Apple’s Screen Time APIs. I’m building it with substantial AI coding assistance; most demo screens are design previews.",
     role: "Personal project · Swift development",
-    responsibilities: "Implementation in progress with substantial AI coding assistance. These design previews show the intended experience; feature completion varies.",
+    responsibilities: "Implementation in progress with substantial AI coding assistance. I built the Screen Time shield and unlock flow, the home-screen widgets and the Live Activity myself; the other screens are design previews and their completion varies.",
     status: "in-development",
     statusLabel: "In development · approximately 60%",
     chapters: [
@@ -368,12 +375,22 @@ export const apps: AppCaseStudy[] = [
         description: "Browse the app and category selector, with blocklist and allowlist views."
       },
       {
-        title: "Unlock challenges",
-        description: "The lock screen concept introduces a math or exercise challenge before returning to an app."
+        title: "Shield & unlock challenge",
+        description: "Blocked apps show a custom Screen Time shield I built with ManagedSettings (ShieldConfiguration and ShieldAction extensions). Open Challenge sends a deep-link notification into this screen, where a math or exercise challenge unlocks the app."
+      },
+      {
+        title: "Widgets & Live Activity",
+        description: "Home-screen widgets for time locked today, days locked this month and an active block, plus a Live Activity on the Lock Screen and Dynamic Island that counts down each block. Built in SwiftUI with WidgetKit and ActivityKit."
       }
     ],
     tech: [
-      "Swift"
+      "Swift",
+      "SwiftUI",
+      "FamilyControls",
+      "ManagedSettings",
+      "DeviceActivity",
+      "WidgetKit",
+      "ActivityKit"
     ],
     screens: [
       {
@@ -410,8 +427,14 @@ export const apps: AppCaseStudy[] = [
       },
       {
         src: "/images/focuslock/lock-screen.png",
-        alt: "FocusLock lock screen design offering exercise or math challenges before reopening an app",
-        caption: "Design preview — Pause before reopening"
+        alt: "FocusLock challenge picker offering an exercise or math challenge, opened from the Screen Time shield",
+        caption: "Unlock challenge — reached from the Screen Time shield"
+      },
+      {
+        src: "/images/focuslock/widgets/time-lock-day.jpg",
+        alt: "Phone home screen with the FocusLock Live Activity counting down a block and a swipeable FocusLock widget stack",
+        caption: "Home-screen widgets and a Live Activity for active blocks",
+        effect: "widgets"
       }
     ],
     features: [

@@ -102,6 +102,7 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
       { title: "Ghi lại giấc mơ", description: "Kể lại giấc mơ bằng lời của bạn. Bản xem trước mô phỏng thao tác nhập một câu chuyện vào nhật ký." },
       { title: "Bối cảnh & cảm xúc", description: "Chia sẻ cảm xúc trong giấc mơ và những điều đang diễn ra trong cuộc sống để AI có thêm bối cảnh khi phân tích." },
       { title: "Phân tích giấc mơ", description: "Xem bản tóm tắt, những hình ảnh nổi bật và các góc nhìn AI gợi ý về giấc mơ của bạn." },
+      { title: "Widget màn hình chính", description: "Widget native trên iOS (Swift, WidgetKit) và Android (Kotlin), có bản sáng và tối: độ ổn định giấc mơ, mẫu lặp lại và lối tắt thêm giấc mơ chỉ với một chạm." },
     ],
     screens: [
       { alt: "Trang chủ WeDream với các thẻ nhật ký giấc mơ có minh họa và thanh điều hướng giấc mơ, âm thanh ngủ, báo cáo và hồ sơ", caption: "Nhật ký lưu lại những giấc mơ cùng gợi ý diễn giải của AI" },
@@ -109,6 +110,7 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
       { alt: "Màn hình nhập giấc mơ WeDream kể về thư viện yên lặng, những cuốn sách lơ lửng và các trang sách thì thầm bí mật, bên trên bàn phím và nút tiếp tục", caption: "Bản xem trước thao tác ghi lại giấc mơ “Thư viện lơ lửng”" },
       { alt: "Màn hình Deep Insight của WeDream với lựa chọn cảm xúc, bối cảnh cuộc sống và học thuyết của Carl Jung, Alfred Adler, Sigmund Freud", caption: "Bổ sung cảm xúc và bối cảnh cuộc sống để khám phá thêm các góc nhìn về giấc mơ" },
       { alt: "Kết quả Thư viện lơ lửng trong WeDream với minh họa, tóm tắt giấc mơ, chỉ số cảm xúc, biểu tượng, diễn giải chi tiết và gợi ý", caption: "Cuộn bên trong điện thoại để đọc toàn bộ phần diễn giải giấc mơ" },
+      { alt: "Màn hình chính điện thoại với bộ widget WeDream vuốt được: độ ổn định giấc mơ, mẫu lặp lại và thêm giấc mơ ở bản tối và sáng", caption: "Widget màn hình chính bản sáng và tối" },
     ],
     features: [
       {
@@ -136,9 +138,9 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
   focuslock: {
     category: "Tập trung · iOS",
     tagline: "Ứng dụng giúp chủ động quản lý thời gian dùng điện thoại",
-    description: "Ứng dụng iOS giúp chặn ứng dụng gây xao nhãng và giới hạn thời gian sử dụng. Tôi đang phát triển bằng Swift với sự hỗ trợ đáng kể của AI; demo hiển thị bản thiết kế.",
+    description: "Ứng dụng iOS giúp chặn ứng dụng gây xao nhãng và giới hạn thời gian sử dụng, viết bằng Swift trên Screen Time API của Apple. Tôi phát triển với sự hỗ trợ đáng kể của AI; phần lớn màn hình trong demo là bản thiết kế.",
     role: "Dự án cá nhân · Phát triển bằng Swift",
-    responsibilities: "Tôi dùng AI hỗ trợ đáng kể trong quá trình viết mã Swift. Dự án hiện hoàn thiện khoảng 60%; các màn hình giới thiệu ở đây là bản thiết kế và chưa phải tất cả đều đã được triển khai.",
+    responsibilities: "Tôi dùng AI hỗ trợ đáng kể trong quá trình viết mã Swift. Tôi tự xây dựng màn chặn Screen Time (shield) và luồng mở khóa, widget màn hình chính và Live Activity; các màn hình còn lại là bản thiết kế, mức độ hoàn thiện khác nhau.",
     statusLabel: "Đang phát triển · khoảng 60%",
     chapters: [
       {
@@ -158,8 +160,12 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
         description: "Chọn ứng dụng hoặc nhóm ứng dụng cần hạn chế, đồng thời giữ lại những ứng dụng bạn vẫn cần dùng."
       },
       {
-        title: "Thử thách mở khóa",
-        description: "Thiết kế yêu cầu hoàn thành một bài toán hoặc thử thách vận động trước khi mở lại ứng dụng, tạo một khoảng dừng để bạn cân nhắc."
+        title: "Shield & thử thách mở khóa",
+        description: "Ứng dụng bị chặn hiện màn chặn Screen Time tùy chỉnh do tôi xây dựng bằng ManagedSettings (extension ShieldConfiguration và ShieldAction). Nút Open Challenge gửi thông báo kèm deep link về màn này, hoàn thành bài toán hoặc thử thách vận động để mở khóa ứng dụng."
+      },
+      {
+        title: "Widget & Live Activity",
+        description: "Widget màn hình chính cho thời gian khóa hôm nay, số ngày khóa trong tháng và phiên đang chặn, cùng Live Activity trên màn hình khóa và Dynamic Island đếm ngược từng phiên. Xây dựng bằng SwiftUI với WidgetKit và ActivityKit."
       }
     ],
     screens: [
@@ -180,8 +186,12 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
         caption: "Xem trước thiết kế — Chọn ứng dụng"
       },
       {
-        alt: "Thiết kế màn khóa FocusLock với lựa chọn thử thách vận động hoặc toán trước khi mở lại ứng dụng",
-        caption: "Xem trước thiết kế — Thử thách trước khi mở ứng dụng"
+        alt: "Màn chọn thử thách FocusLock với thử thách vận động hoặc toán, mở từ màn chặn Screen Time",
+        caption: "Thử thách mở khóa — mở từ màn chặn Screen Time"
+      },
+      {
+        alt: "Màn hình chính điện thoại với Live Activity FocusLock đếm ngược phiên chặn và bộ widget FocusLock vuốt được",
+        caption: "Widget màn hình chính và Live Activity cho phiên chặn"
       }
     ],
     features: [
