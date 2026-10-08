@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { site } from "@/lib/site";
 import { useLocale } from "./LocaleProvider";
 import { useEffect, useState } from "react";
@@ -8,9 +9,9 @@ import { LanguageToggle } from "./LanguageToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
-  { href: "#work", label: "work" },
-  { href: "#experience", label: "experience" },
-  { href: "#contact", label: "contact" },
+  { href: "/#work", label: "work" },
+  { href: "/#experience", label: "experience" },
+  { href: "/#contact", label: "contact" },
 ] as const;
 
 export function Navbar() {
@@ -35,19 +36,19 @@ export function Navbar() {
           : "border-transparent bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex min-h-[var(--header-height)] max-w-[1240px] items-center justify-between gap-3 px-4 py-3 sm:px-8">
-        <a href="#top" className="min-w-0 text-[15px] leading-5 font-semibold tracking-tight sm:text-base">
+      <nav className="mx-auto flex min-h-[var(--header-height)] max-w-[var(--content-width)] items-center justify-between gap-3 px-4 py-3 sm:px-8">
+        <Link href="/#top" className="min-w-0 text-[15px] leading-5 font-semibold tracking-tight sm:text-base">
           {site.name}
-        </a>
+        </Link>
         <div className="hidden items-center gap-4 lg:flex">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm text-secondary transition-colors hover:text-foreground"
             >
               {t.nav[link.label]}
-            </a>
+            </Link>
           ))}
           <a
             href={site.cvPath}

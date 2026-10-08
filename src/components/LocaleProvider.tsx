@@ -1,12 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { LOCALE_COOKIE, messages, type Locale } from "@/lib/i18n/messages";
 
 const LocaleContext = createContext<{ locale: Locale; setLocale: (locale: Locale) => void } | null>(null);
 
 export function LocaleProvider({ initialLocale, children }: { initialLocale: Locale; children: ReactNode }) {
   const [locale, updateLocale] = useState(initialLocale);
+  const firstRender = useRef(true);
 
   function setLocale(next: Locale) {
     updateLocale(next);
@@ -15,6 +16,11 @@ export function LocaleProvider({ initialLocale, children }: { initialLocale: Loc
   }
 
   useEffect(() => {
+    // The server already rendered metadata for the initial locale, including per-page titles.
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
     const meta = messages[locale].meta;
     document.documentElement.lang = locale;
     document.title = meta.title;

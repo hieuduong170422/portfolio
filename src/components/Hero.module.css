@@ -1,4 +1,4 @@
-.hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 28px; max-width: 1240px; width: 100%; margin: 0 auto; padding: 120px 32px 0; }
+.hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 28px; max-width: var(--content-width); width: 100%; margin: 0 auto; padding: 120px 32px 0; }
 .stage { position: relative; isolation: isolate; width: 100%; }
 .hero { position: relative; }
 .intro { position: relative; z-index: 2; min-width: 0; }

@@ -1,4 +1,4 @@
-.work { width: 100%; max-width: 1240px; margin: 0 auto; padding: 40px 32px 0; scroll-margin-top: var(--header-height); }
+.work { width: 100%; max-width: var(--content-width); margin: 0 auto; padding: 40px 32px 0; scroll-margin-top: var(--header-height); }
 .heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 28px; }
 .heading h2 { font-size: clamp(28px, 3vw, 36px); font-weight: 500; line-height: 1.15; letter-spacing: -.05em; }
 .projectNav { position: sticky; top: var(--header-height); z-index: 20; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--background); border-block: 1px solid var(--border); }

@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  max-width: 1240px;
+  max-width: var(--content-width);
   margin: 0 auto;
   padding: 48px 32px;
   border-top: 1px solid var(--border);

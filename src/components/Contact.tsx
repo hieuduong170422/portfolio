@@ -11,7 +11,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="mx-auto w-full max-w-[1240px] border-t border-border px-6 py-10 sm:py-12 text-center sm:px-8"
+      className="mx-auto w-full max-w-[var(--content-width)] border-t border-border px-6 py-10 sm:py-12 text-center sm:px-8"
     >
       <motion.h2
         initial={{ opacity: 0, y: 16 }}
