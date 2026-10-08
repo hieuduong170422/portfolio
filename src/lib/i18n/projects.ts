@@ -71,8 +71,8 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
       },
     ],
     stats: [
-      { label: "Tổng người dùng", value: new Intl.NumberFormat("vi-VN").format(6643) },
-      { label: "Lượt mua trong ứng dụng", value: "29" },
+      { label: "Tổng người dùng", value: "10.000+" },
+      { label: "Người dùng mua gói", value: "100+" },
       { label: "Nền tảng", value: "App Store · Google Play" },
     ],
     statsNote: "Số liệu theo CV, ghi nhận từ 02/2026.",

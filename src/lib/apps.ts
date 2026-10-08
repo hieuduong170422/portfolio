@@ -202,8 +202,8 @@ export const apps: AppCaseStudy[] = [
       website: "https://capple.app",
     },
     stats: [
-      { label: "Total users", value: "6,643" },
-      { label: "In-app purchases", value: "29" },
+      { label: "Total users", value: "10,000+" },
+      { label: "Paying users", value: "100+" },
       { label: "Platform", value: "App Store · Google Play" },
     ],
     statsNote: "Metrics reported in CV · from February 2026.",
