@@ -2,7 +2,7 @@
 
 import { useLocale } from "./LocaleProvider";
 import { formatMessage } from "@/lib/i18n/messages";
-import { useCallback, useEffect, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, CodeXml, MoveHorizontal, RotateCcw } from "lucide-react";
@@ -13,7 +13,7 @@ import type { AppCaseStudy } from "@/lib/apps";
 import { imageSizes } from "@/lib/imageSizes";
 import { warmScreenImage } from "@/lib/warmScreenImage";
 import { chapterIndexOf, getChapterRanges } from "@/lib/chapters";
-import { useScrollSteps } from "./useScrollSteps";
+import { useWheelSteps } from "./useWheelSteps";
 import visual from "./ProjectVisual.module.css";
 import styles from "./AppShowcase.module.css";
 
@@ -28,9 +28,9 @@ export function AppShowcase({ app, variant = "full" }: { app: AppCaseStudy; vari
   const ranges = getChapterRanges(app.chapters);
   const lastRange = ranges[ranges.length - 1];
   const slotCount = lastRange.start + lastRange.count;
-  // On the home page, scrolling walks through every screen before the page moves on.
-  const { trackRef, scrollMode, scrollToStep } = useScrollSteps({ enabled: summary, count: slotCount, onStep: setSelected });
-  const select = (index: number) => (scrollMode ? scrollToStep(index) : setSelected(index));
+  // The wheel steps through screens only while the pointer is over the phone stage.
+  const stageRef = useWheelSteps({ count: slotCount, selected, onStep: setSelected });
+  const select = setSelected;
   const chapterIndex = chapterIndexOf(ranges, selected);
   const chapter = app.chapters[chapterIndex];
   const range = ranges[chapterIndex];
@@ -60,12 +60,11 @@ export function AppShowcase({ app, variant = "full" }: { app: AppCaseStudy; vari
   ].filter((link) => link.href);
 
   return (
-    <article ref={trackRef} aria-labelledby={`${app.slug}-title`} data-project={app.slug} data-variant={variant}
-      data-scroll-mode={scrollMode} style={{ "--steps": slotCount - 1 } as CSSProperties}
+    <article aria-labelledby={`${app.slug}-title`} data-project={app.slug} data-variant={variant}
       className={`${visual.theme} ${styles.project}`}>
       <div className={styles.layout}>
         <div className={styles.visualColumn}>
-          <div className={styles.stage} id={panelId} role="region" aria-label={formatMessage(t.preview.region, { name: app.name })}>
+          <div ref={stageRef} className={styles.stage} id={panelId} role="region" aria-label={formatMessage(t.preview.region, { name: app.name })}>
             <div className={styles.stageHeader}>
               <span>{app.shortName ?? app.name}</span>
               <span>{app.status === "in-development" || !app.screens[selected] ? t.preview.visual : t.preview.experience}</span>
@@ -120,7 +119,7 @@ export function AppShowcase({ app, variant = "full" }: { app: AppCaseStudy; vari
           </p>
         </div>
 
-        <div className={styles.story} data-pin-content>
+        <div className={styles.story}>
           {app.statusLabel && <p className={styles.statusBadge}>{app.statusLabel}</p>}
           <h3 id={`${app.slug}-title`}>{app.name}</h3>
           <p className={styles.description}>{app.description}</p>

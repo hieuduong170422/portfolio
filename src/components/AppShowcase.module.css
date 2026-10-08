@@ -2,17 +2,9 @@
 .layout { display: grid; grid-template-columns: 1.1fr 1fr; align-items: start; gap: clamp(28px, 4vw, 56px); }
 /* The phone stays pinned under the project tabs while the story column scrolls. */
 .visualColumn { --pin-top: calc(var(--header-height) + 76px); min-width: 0; position: sticky; top: var(--pin-top); }
-/* Home page scrollytelling: the card pins under the tabs and each step gets 55svh of scrolling.
-   The 76px tab offset is mirrored in useScrollSteps.ts. */
-.project[data-scroll-mode="true"] { --pin-top: calc(var(--header-height) + 76px); height: calc(100svh - var(--pin-top) + var(--steps) * 55svh); padding-block: 0; }
-.project[data-scroll-mode="true"] .layout { position: sticky; top: var(--pin-top); min-height: calc(100svh - var(--pin-top)); align-items: center; padding-block: 16px; }
-.project[data-scroll-mode="true"] .visualColumn { position: static; }
-/* Let a scrollable screenshot hand the wheel back to the page at its end, so steps keep advancing. */
-.project[data-scroll-mode="true"] .screenContent :global(*) { overscroll-behavior: auto; }
-.project[data-scroll-mode="true"] .stage { min-height: min(640px, calc(100svh - var(--pin-top) - 32px)); }
-/* Reserve the longest chapter description so the pinned card keeps one height across steps. */
+/* Reserve the longest chapter description so the card keeps one height across steps. */
 .project[data-variant="summary"] .chapterDescription { min-height: calc(3 * 1.7em); }
-/* Laptop-height windows: tighten the summary so it still fits the pinned viewport. */
+/* Laptop-height windows: tighten the summary so the card fits on screen. */
 @media (min-width: 701px) and (max-height: 900px) {
   .project[data-variant="summary"] .story h3 { font-size: clamp(28px, 2.6vw, 32px); }
   .project[data-variant="summary"] .description { max-width: 64ch; margin-top: 12px; }
