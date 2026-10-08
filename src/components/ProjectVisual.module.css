@@ -34,10 +34,7 @@
   overscroll-behavior-y: contain;
   touch-action: pan-y pinch-zoom;
   scrollbar-width: none;
-  background: #fff;
 }
-.theme[data-project="wedream"] .scrollViewport,
-.theme[data-project="focuslock"] .scrollViewport { background: #000; }
 .scrollViewport::-webkit-scrollbar {
   display: none;
 }

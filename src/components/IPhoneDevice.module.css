@@ -5,7 +5,7 @@
 .primary { position: absolute; inset: 0; border: 1cqw solid #f7f7f7; border-radius: 16.14173% / 7.78875%; }
 .highlight { position: absolute; inset: 0.03846cqw 0 0; border: 0.384615cqw solid #dfdedb; border-radius: 16.22% / 7.83%; filter: blur(0.115385cqw); }
 .bezel { position: absolute; inset: 1.384615cqw; border: 0.153846cqw solid #646464; border-radius: 15.15397% / 7.20339%; opacity: .8; filter: blur(0.076923cqw); }
-.screen { position: absolute; inset: 3.846154cqw; overflow: hidden; border-radius: 14.102564% / 6.516588%; background: #fff; }
+.screen { position: absolute; inset: 3.846154cqw; overflow: hidden; border-radius: 14.102564% / 6.516588%; background: var(--screen-bg, #fff); }
 .island { position: absolute; z-index: 3; left: 50%; top: 6.923077cqw; transform: translateX(-50%); width: 28.461538cqw; height: 8.307692cqw; border-radius: 99px; background: #000; }
 .buttons span { position: absolute; width: .769231%; border-radius: .153846cqw; background: linear-gradient(#2d2e2a, #dedede 12%, #fafaf8 50%, #dedede 88%, #2d2e2a); border: .076923cqw solid #9d9d9d; }
 .action { left: 0; top: 20.36336%; height: 3.67146%; }

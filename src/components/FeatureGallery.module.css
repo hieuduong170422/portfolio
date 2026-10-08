@@ -26,7 +26,7 @@
 .dialogContent { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; padding: 28px; }
 .preview { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 18px; min-width: 0; padding: 30px 20px; border-radius: 18px; background: var(--project-wash); }
 .phone { width: clamp(155px, calc((90svh - 210px) * .492), 260px); max-width: 100%; }
-.screen { position: absolute; inset: 0; background: #fff; }
+.screen { position: absolute; inset: 0; }
 .scrollHint { display: flex; align-items: center; gap: 6px; color: var(--project-ink); font-size: 14px; }
 .details { display: flex; flex-direction: column; align-self: center; min-width: 0; }
 .description { font-size: 16px; line-height: 1.65; color: var(--secondary); margin-bottom: 22px; }

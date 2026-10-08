@@ -29,7 +29,7 @@
 .stageRing::after { content: ""; position: absolute; inset: 12%; border: 1px solid var(--project-line); border-radius: 50%; }
 /* Width also follows viewport height so the pinned phone never overflows a short window. */
 .device { position: relative; z-index: 1; width: min(clamp(190px, 19vw, 290px), calc((100svh - var(--pin-top) - 164px) * .49)); }
-.screenContent { position: absolute; inset: 0; background: var(--screen-bg); }
+.screenContent { position: absolute; inset: 0; }
 .stageFooter { bottom: 24px; font-size: 14px; font-family: var(--font-geist-mono), monospace; }
 .stageFooter > span > span { opacity: .45; }
 .scrollHint { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-geist-sans), sans-serif; font-size: 14px; }
