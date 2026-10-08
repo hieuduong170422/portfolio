@@ -18,6 +18,7 @@ const en = {
     availability: "Hanoi · Onsite or remote · Available to start immediately",
     explore: "View projects",
     gallery: "Explore three mobile app projects",
+    rotate: "Drag a phone to spin it",
   },
   work: { label: "Selected work", navigation: "Project navigation", caseStudy: "View case study", allWork: "All work", otherProjects: "Other projects" },
   preview: {
@@ -64,6 +65,7 @@ const vi: Messages = {
     availability: "Hà Nội · Onsite hoặc remote · Có thể bắt đầu ngay",
     explore: "Xem dự án",
     gallery: "Khám phá ba dự án ứng dụng di động",
+    rotate: "Kéo điện thoại để xoay",
   },
   work: { label: "Dự án tiêu biểu", navigation: "Điều hướng dự án", caseStudy: "Xem chi tiết dự án", allWork: "Tất cả dự án", otherProjects: "Dự án khác" },
   preview: {

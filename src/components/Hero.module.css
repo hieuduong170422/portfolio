@@ -1,5 +1,5 @@
 .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 28px; max-width: var(--content-width); width: 100%; margin: 0 auto; padding: 120px 32px 0; }
-.stage { position: relative; isolation: isolate; width: 100%; }
+.stage { position: relative; isolation: isolate; width: 100%; overflow-x: clip; }
 .hero { position: relative; }
 .intro { position: relative; z-index: 2; min-width: 0; }
 .role { margin-top: 12px; font-size: 20px; color: var(--secondary); }
@@ -18,7 +18,17 @@
 .phoneLink[data-project="capple"] { z-index: 3; top: 3%; left: 34%; --angle: -2deg; transform: rotate(-2deg); animation-delay: .08s; }
 .phoneLink[data-project="wedream"] { z-index: 2; top: 17%; left: 2%; --angle: -13deg; transform: rotate(-13deg); animation-delay: .2s; }
 .phoneLink[data-project="focuslock"] { z-index: 1; top: 22%; right: 0; --angle: 12deg; transform: rotate(12deg); animation-delay: .32s; }
-.phone { border-radius: 16% / 8%; }
+.phone { border-radius: 16% / 8%; transition: opacity .5s ease; }
+/* The WebGL phones overflow the gallery by 10% per side (see hero3d/layout.ts) and stay under the links. */
+.scene3d { position: absolute; inset: -10%; z-index: 0; pointer-events: none; opacity: 0; transition: opacity .5s ease; }
+.gallery[data-3d="ready"] .scene3d { opacity: 1; }
+/* The links stay as hit areas and labels; only their HTML phone art fades out. */
+.gallery[data-3d="ready"] .phone { opacity: 0; }
+/* Horizontal drags spin the phone (hero3d/spin.ts); vertical swipes still scroll the page. */
+.gallery[data-3d="ready"] .phoneLink { cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.gallery[data-3d="ready"] .phoneLink:active { cursor: grabbing; }
+.rotateHint { position: absolute; left: 0; right: 0; bottom: -9%; display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--secondary); font-size: 12px; opacity: .75; animation: hintIn .6s ease .2s backwards; }
+@keyframes hintIn { from { opacity: 0; transform: translateY(6px); } }
 .phoneLabel { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 20px; color: var(--secondary); font-size: 14px; }
 .phoneLabel i { width: 5px; height: 5px; border-radius: 50%; background: var(--project-color); }
 .phoneLink:focus-visible { outline: 2px solid var(--project-color); outline-offset: 8px; border-radius: 24px; }
