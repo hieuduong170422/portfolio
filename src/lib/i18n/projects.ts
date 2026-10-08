@@ -25,7 +25,7 @@ export const vietnameseProjects: Record<"capple" | "wedream" | "focuslock", Proj
       "Tích hợp Apple HealthKit và Health Connect cho bước chân, bài tập và chu kỳ; phát triển widget màn hình khóa iOS 16+ bằng native Swift/WidgetKit.",
       "Thiết kế hệ thống giữ chân người dùng: streak có freeze và tự động cứu, huy hiệu, cửa hàng với mystery box, theo dõi chu kỳ dự đoán chính xác dần theo số tháng ghi nhận, thông báo FCM xoay vòng để kéo người dùng quay lại.",
       "Xây dựng cơ chế tăng trưởng: mã giới thiệu và mã quà tặng qua deep link, chia sẻ bữa ăn kiểu Strava, gói sinh viên có xác minh OTP và giá theo khu vực.",
-      "Thử nghiệm monetization với giới hạn lượt quét miễn phí mỗi ngày, đo funnel bằng Mixpanel và Firebase Analytics. Thêm force update, nhắc cập nhật trong ứng dụng và màn hình What's New theo từng phiên bản.",
+      "Thử nghiệm monetization với giới hạn lượt quét miễn phí mỗi ngày, đo funnel bằng Google Analytics for Firebase. Thêm force update, nhắc cập nhật trong ứng dụng và màn hình What's New theo từng phiên bản.",
       "Xây dựng backend Node.js/MongoDB và GitLab CI/CD tự động triển khai khi cập nhật nhánh dev. Quản lý phát hành trên App Store Connect và Google Play Console từ 07/2026.",
     ],
     chapters: [

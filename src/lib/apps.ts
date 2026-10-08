@@ -76,7 +76,7 @@ export const apps: AppCaseStudy[] = [
       "Integrated Apple HealthKit and Health Connect for steps, workouts and cycle data, and shipped a native iOS 16+ lock-screen widget in Swift/WidgetKit.",
       "Designed retention systems: streaks with freeze and auto-rescue, badges, a shop with mystery boxes, cycle tracking whose predictions improve with each logged month, and rotating push re-engagement via FCM.",
       "Shipped growth loops: referral and gift codes via deep links, Strava-style meal sharing, and a student plan with OTP verification and regional pricing.",
-      "Ran monetization experiments on free daily scan limits and instrumented funnels with Mixpanel and Firebase Analytics. Added force update, in-app update prompts and per-version What's New.",
+      "Ran monetization experiments on free daily scan limits and instrumented funnels with Google Analytics for Firebase. Added force update, in-app update prompts and per-version What's New.",
       "Built the Node.js/MongoDB backend and GitLab CI/CD that deploys on pushes to dev. Manage App Store Connect and Google Play Console releases since July 2026.",
     ],
     tech: [
@@ -90,8 +90,7 @@ export const apps: AppCaseStudy[] = [
       "Swift · WidgetKit",
       "HealthKit · Health Connect",
       "GPT-4o mini",
-      "Firebase · FCM",
-      "Mixpanel",
+      "Firebase Analytics · FCM",
       "RevenueCat",
       "i18n (14 locales)",
       "Node.js",
