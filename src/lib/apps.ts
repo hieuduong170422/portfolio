@@ -71,8 +71,8 @@ export const apps: AppCaseStudy[] = [
     ],
     highlights: [
       "Built the Flutter codebase with Clean Architecture across 8 feature modules (auth, food scan, nutrition, cycle tracking, cheat day, subscription, shop, student verification), localized into 14 languages including Arabic.",
-      "Integrated Apple HealthKit and Health Connect for steps, workouts and cycle data, and shipped a native iOS 16+ lock-screen widget in Swift/WidgetKit.",
-      "Designed retention systems: streaks with freeze and auto-rescue, badges, a shop with mystery boxes, cycle tracking whose predictions improve with each logged month, and rotating push re-engagement via FCM.",
+      "Integrated Apple HealthKit and Health Connect for steps, workouts and cycle data, and built native home-screen widgets on iOS (Swift/WidgetKit, including an iOS 16+ lock-screen widget) and Android (Kotlin).",
+      "Designed retention systems: streaks with freeze and auto-rescue, badges, a shop with mystery boxes, cycle tracking whose predictions improve with each logged month, and time-zone-aware local reminders with rotating copy and re-engagement nudges.",
       "Shipped growth loops: referral and gift codes via deep links, Strava-style meal sharing, and a student plan with OTP verification and regional pricing.",
       "Ran monetization experiments on free daily scan limits and instrumented funnels with Google Analytics for Firebase. Added force update, in-app update prompts and per-version What's New.",
       "Built the Node.js/MongoDB backend and GitLab CI/CD that deploys on pushes to dev. Manage App Store Connect and Google Play Console releases since July 2026.",
@@ -86,6 +86,7 @@ export const apps: AppCaseStudy[] = [
       "Freezed",
       "Retrofit/Dio",
       "Swift · WidgetKit",
+      "Kotlin · App Widgets",
       "HealthKit · Health Connect",
       "GPT-4o mini",
       "Firebase Analytics · FCM",

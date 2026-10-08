@@ -8,6 +8,8 @@ import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, CodeXml, R
 import { IPhoneDevice } from "./IPhoneDevice";
 import { ProjectScreen } from "./ProjectScreen";
 import { FeatureGallery } from "./FeatureGallery";
+import { WidgetShowcase } from "./WidgetShowcase";
+import { getSurfaces } from "@/lib/surfaces";
 import type { AppCaseStudy } from "@/lib/apps";
 import { imageSizes } from "@/lib/imageSizes";
 import { warmScreenImage } from "@/lib/warmScreenImage";
@@ -15,7 +17,8 @@ import visual from "./ProjectVisual.module.css";
 import styles from "./AppShowcase.module.css";
 
 export function AppShowcase({ app }: { app: AppCaseStudy }) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const surfaces = getSurfaces(app.slug, locale);
   const [selected, setSelected] = useState(0);
   const [typingReplay, setTypingReplay] = useState(0);
   const reducedMotion = useReducedMotion();
@@ -158,6 +161,7 @@ export function AppShowcase({ app }: { app: AppCaseStudy }) {
         </div>
       </div>
       {app.features && app.features.length > 0 && <FeatureGallery appName={app.shortName ?? app.name} features={app.features} />}
+      {surfaces && <WidgetShowcase appName={app.shortName ?? app.name} surfaces={surfaces} />}
     </article>
   );
 }
