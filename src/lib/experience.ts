@@ -1,6 +1,6 @@
 import type { Locale } from "./i18n/messages";
 
-// Source: Hieu-Duong-Minh-CV.pdf (English edition, 10/2026).
+// Source: Hieu-Duong-Minh-CV.pdf (English edition, 12/10/2026).
 export type ExperienceEntry = {
   id: string;
   period: string;
@@ -13,20 +13,20 @@ export const experience: ExperienceEntry[] = [
   {
     id: "capple-wedream",
     period: "Dec 2025 — Present",
-    role: "Co-founder & Lead Developer",
+    role: "Co-founder & Lead Mobile Developer",
     org: "Capple · WeDream AI",
     bullets: [
-      "Lead development of Capple in a five-person team, owning the Flutter app, Node.js/MongoDB backend, infrastructure and releases. Implement the mobile UI from the designer’s work with Clean Architecture, Riverpod and Dio.",
-      "Integrated GPT-4o mini, Firebase Authentication, Firebase Analytics and SharedPreferences. Since February 2026, Capple has reached 10,000+ users and 100+ in-app purchases.",
-      "Built WeDream AI from scratch with Flutter, Node.js/MongoDB, Clean Architecture, Riverpod and GPT-4o mini for dream analysis.",
-      "Configured GitLab CI/CD to deploy automatically on pushes to the dev branch and managed environment variables. Took over App Store Connect and Google Play Console management in July 2026, following the initial release handled by an investor.",
+      "Architected and built the entire Capple Flutter app in a five-person team with Clean Architecture, Riverpod and Dio/REST, turning designer mockups into production UI, and own the mobile apps, backend, infrastructure and store releases.",
+      "Engineered the Node.js/MongoDB backend with GPT-4o mini to estimate nutrition from food photos, and integrated Firebase Authentication, Firebase Analytics and RevenueCat for sign-in, behavioral tracking and the subscription purchase flow. Capple now serves 10,000+ users with 100+ paid in-app purchases.",
+      "Shipped a second product, WeDream AI, from scratch on the same Flutter and Node.js stack, reusing the established architecture and AI pipeline to shorten time to launch.",
+      "Configured a GitLab CI/CD pipeline that builds and deploys on every push to the dev branch, with environment variables per release channel. Own release management on App Store Connect and Google Play Console (versioning, store listings, rollouts and metrics), taken over from the founding investors in July 2026.",
       "Perform unit testing, automated testing, debugging and performance profiling with Flutter DevTools.",
     ],
   },
   {
     id: "dogeland-web",
     period: "Jun 2026 — Present",
-    role: "Remote Frontend Developer",
+    role: "Frontend Developer (Part-time, Remote)",
     org: "Dogeland · Minecraft server network",
     bullets: [
       "Built the entire frontend of dogeland.vn from scratch in a TypeScript monorepo (Bun workspaces) with React, Vite, Tailwind CSS and TanStack Query, alongside a NestJS API and a shared Prisma/PostgreSQL schema.",
@@ -66,20 +66,20 @@ const experienceVi: ExperienceEntry[] = [
   {
     id: "capple-wedream",
     period: "12/2025 — Nay",
-    role: "Đồng sáng lập & Lập trình viên chính",
+    role: "Đồng sáng lập & Lập trình viên Mobile chính",
     org: "Capple · WeDream AI",
     bullets: [
-      "Đảm nhiệm vai trò lập trình viên chính của Capple trong đội ngũ 5 người. Phụ trách ứng dụng Flutter, backend Node.js/MongoDB, hạ tầng và phát hành; triển khai giao diện từ bản thiết kế với Clean Architecture, Riverpod và Dio.",
-      "Tích hợp GPT-4o mini, Firebase Authentication, Firebase Analytics và SharedPreferences. Từ 02/2026, Capple đạt hơn 10.000 người dùng và hơn 100 lượt mua trong ứng dụng.",
-      "Xây dựng WeDream AI từ đầu với Flutter, Node.js/MongoDB, Clean Architecture, Riverpod và GPT-4o mini để phân tích giấc mơ.",
-      "Thiết lập GitLab CI/CD để tự động triển khai khi cập nhật mã trên nhánh dev và quản lý biến môi trường. Tiếp quản việc phát hành qua App Store Connect và Google Play Console từ 07/2026, sau bản phát hành đầu tiên do nhà đầu tư thực hiện.",
+      "Thiết kế kiến trúc và xây dựng toàn bộ ứng dụng Flutter của Capple trong đội ngũ 5 người với Clean Architecture, Riverpod và Dio/REST, biến bản thiết kế thành giao diện chạy thật; phụ trách ứng dụng mobile, backend, hạ tầng và phát hành lên store.",
+      "Xây dựng backend Node.js/MongoDB, tích hợp GPT-4o mini để ước tính dinh dưỡng từ ảnh món ăn; tích hợp Firebase Authentication, Firebase Analytics và RevenueCat cho đăng nhập, theo dõi hành vi và luồng mua gói đăng ký. Capple hiện phục vụ hơn 10.000 người dùng với hơn 100 lượt mua trong ứng dụng.",
+      "Ra mắt sản phẩm thứ hai, WeDream AI, xây từ đầu trên cùng stack Flutter và Node.js, tái sử dụng kiến trúc và pipeline AI sẵn có để rút ngắn thời gian ra mắt.",
+      "Tự thiết lập pipeline GitLab CI/CD build và triển khai mỗi lần push lên nhánh dev, quản lý biến môi trường theo từng kênh phát hành. Phụ trách phát hành trên App Store Connect và Google Play Console (phiên bản, trang store, rollout và số liệu), tiếp quản từ các nhà đầu tư sáng lập từ 07/2026.",
       "Viết kiểm thử đơn vị, thực hiện kiểm thử tự động, gỡ lỗi và phân tích hiệu năng bằng Flutter DevTools.",
     ],
   },
   {
     id: "dogeland-web",
     period: "06/2026 — Nay",
-    role: "Lập trình viên Frontend (Remote)",
+    role: "Lập trình viên Frontend (Bán thời gian, Remote)",
     org: "Dogeland · Mạng máy chủ Minecraft",
     bullets: [
       "Xây dựng toàn bộ frontend của dogeland.vn từ đầu trong monorepo TypeScript (Bun workspaces) với React, Vite, Tailwind CSS và TanStack Query, cùng API NestJS và schema Prisma/PostgreSQL dùng chung.",
@@ -124,6 +124,6 @@ export function getEducation(locale: Locale) {
     period: "2020 — 2026",
     school: locale === "vi" ? "Đại học Phenikaa" : "Phenikaa University",
     major: locale === "vi" ? "Kỹ thuật phần mềm" : "Software Engineering",
-    status: locale === "vi" ? "Chờ tốt nghiệp (dự kiến 2026)" : "Awaiting graduation (expected 2026)",
+    status: locale === "vi" ? "Chờ tốt nghiệp (dự kiến có kết quả 11/2026)" : "Graduation results expected November 2026",
   };
 }

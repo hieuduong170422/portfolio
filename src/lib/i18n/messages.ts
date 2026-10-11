@@ -8,7 +8,7 @@ export function parseLocale(value: string | undefined): Locale {
 const en = {
   meta: {
     title: "Dương Minh Hiếu — Flutter Developer",
-    description: "Flutter Developer based in Hanoi with over a year of experience. Co-founder & Lead Developer of Capple and WeDream AI.",
+    description: "Flutter Developer based in Hanoi with three years of experience across mobile, backend and web. Co-founder & Lead Developer of Capple and WeDream AI.",
   },
   nav: { work: "Work", experience: "Experience", contact: "Contact", cv: "Download CV", language: "Language", light: "Switch to light theme", dark: "Switch to dark theme" },
   hero: {
@@ -55,7 +55,7 @@ export type Messages = typeof en;
 const vi: Messages = {
   meta: {
     title: "Dương Minh Hiếu — Lập trình viên Flutter",
-    description: "Lập trình viên Flutter tại Hà Nội với hơn một năm kinh nghiệm. Đồng sáng lập và lập trình viên chính của Capple và WeDream AI.",
+    description: "Lập trình viên Flutter tại Hà Nội với ba năm kinh nghiệm mobile, backend và web. Đồng sáng lập và lập trình viên chính của Capple và WeDream AI.",
   },
   nav: { work: "Dự án", experience: "Kinh nghiệm", contact: "Liên hệ", cv: "Tải CV", language: "Ngôn ngữ", light: "Chuyển sang giao diện sáng", dark: "Chuyển sang giao diện tối" },
   hero: {
