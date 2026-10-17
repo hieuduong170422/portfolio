@@ -56,8 +56,8 @@ export const experience: ExperienceEntry[] = [
     role: "Flutter Intern",
     org: "PHX Smart School",
     bullets: [
-      "Developed Flutter mobile interfaces from existing UI/UX designs for PHX Smart School and Vicostone VN.",
-      "Integrated APIs and fetched and processed data for display in the mobile client.",
+      "Built Flutter mobile apps for Iris School, Vicostone VN and Phenikaa School, turning existing UI/UX designs into production screens.",
+      "Integrated GraphQL APIs, fetching and processing data for display in the mobile clients.",
     ],
   },
 ];
@@ -109,8 +109,8 @@ const experienceVi: ExperienceEntry[] = [
     role: "Thực tập sinh Flutter",
     org: "PHX Smart School",
     bullets: [
-      "Phát triển giao diện ứng dụng di động bằng Flutter theo thiết kế UI/UX có sẵn cho PHX Smart School và Vicostone VN.",
-      "Tích hợp API, tải và xử lý dữ liệu để hiển thị trên ứng dụng.",
+      "Phát triển ứng dụng di động bằng Flutter cho Iris School, Vicostone VN và Phenikaa School, dựng giao diện theo thiết kế UI/UX có sẵn.",
+      "Tích hợp API GraphQL, tải và xử lý dữ liệu để hiển thị trên ứng dụng.",
     ],
   },
 ];
